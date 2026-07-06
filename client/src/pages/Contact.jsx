@@ -1,0 +1,253 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
+import { useSEO } from '../hooks/useSEO.js';
+import { apiClient, ApiClientError } from '../lib/apiClient.js';
+import { CONTACT, REVENUE_RANGE_OPTIONS, BOTTLENECK_OPTIONS } from '../lib/constants.js';
+import { JsonLd, organizationSchema, faqSchema } from '../components/shared/JsonLd.jsx';
+
+import { GlassCard } from '../components/ui/GlassCard.jsx';
+import { Button } from '../components/ui/Button.jsx';
+import { Input, Select } from '../components/ui/Input.jsx';
+import { FAQSection } from '../components/sections/FAQSection.jsx';
+
+const FAQ_ITEMS = [
+  {
+    q: "What's the minimum ad spend to work with you?",
+    a: "We're transparent on this during the strategy call — we'd rather tell you honestly if it's not the right fit yet than take budget that won't move the needle.",
+  },
+  {
+    q: 'How fast will I hear back?',
+    a: 'Every submission is reviewed personally by the founder. You can expect a response within 24 hours.',
+  },
+  {
+    q: 'Will I be working with the founder or a junior account manager?',
+    a: 'Every account is founder-reviewed. No black-box reporting, no junior hand-offs.',
+  },
+];
+
+const initialForm = {
+  name: '',
+  brandName: '',
+  revenueRange: '',
+  phone: '',
+  email: '',
+  bottleneck: '',
+};
+
+function validateForm(form) {
+  const errors = {};
+  if (!form.name.trim() || form.name.trim().length < 2) errors.name = 'Enter your full name (min 2 characters).';
+  if (!form.brandName.trim() || form.brandName.trim().length < 2) errors.brandName = 'Enter your business name.';
+  if (!form.revenueRange) errors.revenueRange = 'Select your monthly revenue.';
+  if (!form.phone.trim() || form.phone.trim().length < 7) errors.phone = 'Enter a valid phone number.';
+  if (!/^\S+@\S+\.\S+$/.test(form.email.trim())) errors.email = 'Enter a valid email address.';
+  if (!form.bottleneck) errors.bottleneck = 'Select your biggest growth challenge.';
+  return errors;
+}
+
+export default function Contact() {
+  useSEO({
+    title: 'Contact Nfinity Partner | Book Your Free Growth Strategy Call',
+    description:
+      'Book a free growth strategy call with Nfinity Partner — Tirupur\'s profit-focused D2C growth agency. Reviewed personally by the founder, usually within 24 hours.',
+  });
+
+  const navigate = useNavigate();
+  const [form, setForm] = useState(initialForm);
+  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+
+  function update(field, value) {
+    setForm((f) => ({ ...f, [field]: value }));
+    if (errors[field]) setErrors((e) => ({ ...e, [field]: undefined }));
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const formErrors = validateForm(form);
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
+    }
+
+    setSubmitting(true);
+    setSubmitError('');
+    try {
+      await apiClient.post('/leads', {
+        name: form.name.trim(),
+        brandName: form.brandName.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim(),
+        revenueRange: form.revenueRange,
+        bottleneck: form.bottleneck,
+        sourcePage: '/contact',
+      });
+      navigate('/thank-you');
+    } catch (err) {
+      if (err instanceof ApiClientError && Array.isArray(err.details) && err.details.length > 0) {
+        const fieldErrors = {};
+        err.details.forEach((d) => {
+          fieldErrors[d.field] = d.message;
+        });
+        setErrors(fieldErrors);
+        setSubmitError('Please fix the highlighted fields and try again.');
+      } else {
+        setSubmitError(err?.message || 'Something went wrong submitting the form. Please try again or WhatsApp us directly.');
+      }
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  // Full, precise office address (more specific than CONTACT.address) so the
+  // map embed geocodes to exactly one pin at high zoom instead of a fuzzy
+  // multi-result business search. Scoped to this map card only — the
+  // sidebar contact card and footer keep using CONTACT.address as-is.
+  const OFFICE_NAME = 'Nfinity Partner';
+  const OFFICE_ADDRESS =
+    'No. 6, 2nd Floor, Teachers Colony, Angeripalayam Main Rd, 2nd Street, Tiruppur, Tamil Nadu 641602';
+  const mapQuery = encodeURIComponent(`${OFFICE_NAME}, ${OFFICE_ADDRESS}`);
+  const mapEmbedSrc = `https://www.google.com/maps?q=${mapQuery}&z=18&output=embed`;
+  const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`;
+
+  return (
+    <>
+      <JsonLd id="contact-org" data={organizationSchema()} />
+      <JsonLd id="contact-faq" data={faqSchema(FAQ_ITEMS)} />
+
+      <section className="relative overflow-hidden bg-gradient-black">
+        <div
+          className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[700px] -translate-x-1/2 rounded-full bg-electric-blue-500/20 blur-[120px]"
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto max-w-3xl px-6 py-20 text-center lg:px-8">
+          <h1 className="font-display text-4xl font-extrabold text-white-100 sm:text-5xl">
+            Let's Find Out Where Your Profit Is Leaking.
+          </h1>
+          <p className="mx-auto mt-5 max-w-xl text-slate-400">
+            Book a free strategy call — no pressure, just a clear look at your numbers. Reviewed personally by the
+            founder, usually within 24 hours.
+          </p>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[1fr_380px]">
+          {/* Book Your Free Growth Strategy Call form */}
+          <GlassCard className="p-8 lg:p-10">
+            <h2 className="font-display text-2xl font-bold text-white-100">Book Your Free Growth Strategy Call</h2>
+            <p className="mt-2 text-sm text-slate-400">
+              Tell us a bit about your brand and we'll be in touch within 24 hours.
+            </p>
+
+            <form onSubmit={handleSubmit} className="mt-8">
+              <div className="flex flex-col gap-5">
+                <Input
+                  label="Your Name *"
+                  name="name"
+                  value={form.name}
+                  onChange={(e) => update('name', e.target.value)}
+                  error={errors.name}
+                  placeholder="Suganya Swaminathan"
+                />
+                <Input
+                  label="Business Name *"
+                  name="brandName"
+                  value={form.brandName}
+                  onChange={(e) => update('brandName', e.target.value)}
+                  error={errors.brandName}
+                  placeholder="Your brand"
+                />
+                <Select
+                  label="Monthly Revenue *"
+                  name="revenueRange"
+                  value={form.revenueRange}
+                  onChange={(e) => update('revenueRange', e.target.value)}
+                  error={errors.revenueRange}
+                  placeholder="Select a range"
+                  options={REVENUE_RANGE_OPTIONS}
+                />
+                <Input
+                  label="Phone Number *"
+                  name="phone"
+                  type="tel"
+                  value={form.phone}
+                  onChange={(e) => update('phone', e.target.value)}
+                  error={errors.phone}
+                  placeholder="+91 98765 43210"
+                />
+                <Input
+                  label="Email Address *"
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={(e) => update('email', e.target.value)}
+                  error={errors.email}
+                  placeholder="you@brand.com"
+                />
+                <Select
+                  label="Biggest Growth Challenge *"
+                  name="bottleneck"
+                  value={form.bottleneck}
+                  onChange={(e) => update('bottleneck', e.target.value)}
+                  error={errors.bottleneck}
+                  placeholder="Select one"
+                  options={BOTTLENECK_OPTIONS}
+                />
+              </div>
+
+              {submitError && <p className="mt-4 text-sm text-red-400">{submitError}</p>}
+
+              <div className="mt-8">
+                <Button type="submit" disabled={submitting} className={submitting ? 'opacity-70' : ''} withArrow>
+                  {submitting ? 'Submitting...' : 'Continue to book a call'}
+                </Button>
+              </div>
+            </form>
+          </GlassCard>
+
+          {/* Sidebar */}
+          <div className="flex flex-col gap-6">
+            <GlassCard className="flex flex-col gap-5 p-7">
+              <a href={CONTACT.whatsappHref} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-white-100 hover:text-cyan-glow-400">
+                <MessageCircle size={20} className="text-success-green" /> WhatsApp Us Directly
+              </a>
+              <a href={CONTACT.phoneHref} className="flex items-center gap-3 text-white-100 hover:text-cyan-glow-400">
+                <Phone size={20} className="text-electric-blue-400" /> {CONTACT.phone}
+              </a>
+              <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-3 text-white-100 hover:text-cyan-glow-400">
+                <Mail size={20} className="text-electric-blue-400" /> {CONTACT.email}
+              </a>
+              <div className="flex items-start gap-3 text-slate-400">
+                <MapPin size={20} className="mt-0.5 shrink-0 text-electric-blue-400" /> {CONTACT.address}
+              </div>
+            </GlassCard>
+
+            <GlassCard className="overflow-hidden p-0">
+              <div className="p-5 pb-4">
+                <p className="font-display font-semibold text-white-100">{OFFICE_NAME}</p>
+                <p className="mt-1 text-sm text-slate-400">{OFFICE_ADDRESS}</p>
+              </div>
+              <iframe
+                title="Nfinity Partner office location"
+                className="h-56 w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                src={mapEmbedSrc}
+              />
+              <div className="p-5">
+                <Button href={directionsHref} variant="secondary" withArrow>
+                  Get Directions
+                </Button>
+              </div>
+            </GlassCard>
+          </div>
+        </div>
+      </section>
+
+      <FAQSection title="Frequently Asked Questions" items={FAQ_ITEMS} />
+    </>
+  );
+}
