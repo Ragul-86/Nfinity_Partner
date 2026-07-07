@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { useSEO } from '../hooks/useSEO.js';
 import { apiClient, ApiClientError } from '../lib/apiClient.js';
-import { CONTACT, REVENUE_RANGE_OPTIONS, BOTTLENECK_OPTIONS } from '../lib/constants.js';
+import { CONTACT, REVENUE_RANGE_OPTIONS } from '../lib/constants.js';
 import { JsonLd, organizationSchema, faqSchema } from '../components/shared/JsonLd.jsx';
 
 import { GlassCard } from '../components/ui/GlassCard.jsx';
 import { Button } from '../components/ui/Button.jsx';
-import { Input, Select } from '../components/ui/Input.jsx';
+import { Input, Select, Textarea } from '../components/ui/Input.jsx';
 import { FAQSection } from '../components/sections/FAQSection.jsx';
 
 const FAQ_ITEMS = [
@@ -32,7 +32,7 @@ const initialForm = {
   revenueRange: '',
   phone: '',
   email: '',
-  bottleneck: '',
+  message: '',
 };
 
 function validateForm(form) {
@@ -42,7 +42,7 @@ function validateForm(form) {
   if (!form.revenueRange) errors.revenueRange = 'Select your monthly revenue.';
   if (!form.phone.trim() || form.phone.trim().length < 7) errors.phone = 'Enter a valid phone number.';
   if (!/^\S+@\S+\.\S+$/.test(form.email.trim())) errors.email = 'Enter a valid email address.';
-  if (!form.bottleneck) errors.bottleneck = 'Select your biggest growth challenge.';
+  if (!form.message.trim() || form.message.trim().length < 10) errors.message = 'Please describe your challenge (min 10 characters).';
   return errors;
 }
 
@@ -81,7 +81,7 @@ export default function Contact() {
         email: form.email.trim(),
         phone: form.phone.trim(),
         revenueRange: form.revenueRange,
-        bottleneck: form.bottleneck,
+        message: form.message.trim(),
         sourcePage: '/contact',
       });
       navigate('/thank-you');
@@ -187,14 +187,14 @@ export default function Contact() {
                   error={errors.email}
                   placeholder="you@brand.com"
                 />
-                <Select
+                <Textarea
                   label="Biggest Growth Challenge *"
-                  name="bottleneck"
-                  value={form.bottleneck}
-                  onChange={(e) => update('bottleneck', e.target.value)}
-                  error={errors.bottleneck}
-                  placeholder="Select one"
-                  options={BOTTLENECK_OPTIONS}
+                  name="message"
+                  value={form.message}
+                  onChange={(e) => update('message', e.target.value)}
+                  error={errors.message}
+                  placeholder={`Tell us about your current marketing or business challenge...\n\nExamples:\n• Need more qualified leads\n• Low sales despite running ads\n• Need help scaling my business`}
+                  rows={4}
                 />
               </div>
 

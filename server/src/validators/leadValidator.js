@@ -13,10 +13,16 @@ export const createLeadSchema = z.object({
     revenueRange: z.enum(['<10L', '10L-50L', '50L-2Cr', '2Cr+'], {
       errorMap: () => ({ message: 'Select a valid revenue range' }),
     }),
-    bottleneck: z.enum(['acquisition', 'conversion', 'retention', 'tracking', 'not_sure'], {
-      errorMap: () => ({ message: 'Select a valid growth bottleneck' }),
-    }),
-    message: z.string().trim().max(2000).optional().or(z.literal('')),
+    bottleneck: z
+      .enum(['acquisition', 'conversion', 'retention', 'tracking', 'not_sure'])
+      .optional(),
+    message: z
+      .string()
+      .trim()
+      .min(10, 'Please describe your challenge (min 10 characters)')
+      .max(2000)
+      .optional()
+      .or(z.literal('')),
     sourcePage: z.string().trim().max(200).optional(),
     utm: z
       .object({

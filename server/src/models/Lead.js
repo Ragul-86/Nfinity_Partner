@@ -14,7 +14,7 @@ const LeadSchema = new mongoose.Schema(
     bottleneck: {
       type: String,
       enum: ['acquisition', 'conversion', 'retention', 'tracking', 'not_sure'],
-      required: true,
+      required: false,
     },
     message: { type: String, trim: true, maxlength: 2000 },
     source: { type: String, trim: true, default: 'contact_form' },

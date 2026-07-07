@@ -78,8 +78,7 @@ function buildLeadEmailHtml(lead, submittedAt) {
               ${row('📞 Phone Number',           lead.phone)}
               ${row('📧 Email Address',          lead.email)}
               ${row('💰 Monthly Revenue',        REVENUE_LABELS[lead.revenueRange] || lead.revenueRange)}
-              ${row('🎯 Biggest Growth Challenge', BOTTLENECK_LABELS[lead.bottleneck] || lead.bottleneck)}
-              ${lead.message ? row('💬 Message', lead.message) : ''}
+              ${row('🎯 Biggest Growth Challenge', lead.message || (BOTTLENECK_LABELS[lead.bottleneck] || lead.bottleneck) || '—')}
               ${row('🔗 Source Page',            lead.sourcePage || 'Direct')}
             </table>
 
