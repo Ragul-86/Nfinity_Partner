@@ -7,15 +7,25 @@ import { logger } from '../utils/logger.js';
 
 // POST /api/v1/leads — public
 export const createLead = asyncHandler(async (req, res) => {
+  // 1. Always save the lead first — data capture is the priority.
   const lead = await Lead.create(req.body);
 
-  // Don't make the visitor wait on the email round-trip.
-  notifyNewLead(lead).catch((err) => logger.error(err.message));
+  // 2. Attempt to send notification email. Failure must never lose the lead.
+  let emailSent = false;
+  try {
+    await notifyNewLead(lead);
+    emailSent = true;
+  } catch (err) {
+    logger.error(
+      `Lead notification email FAILED for lead ${lead._id} (${lead.name} / ${lead.brandName}): ${err.message}`
+    );
+  }
 
+  // 3. Respond with success regardless — the lead is safely in MongoDB.
   sendSuccess(res, {
     statusCode: 201,
-    message: 'Thanks — your free profit audit request has been received.',
-    data: { id: lead._id },
+    message: "Thank you! Your request has been received. We'll contact you within 24 hours.",
+    data: { id: lead._id, emailSent },
   });
 });
 
