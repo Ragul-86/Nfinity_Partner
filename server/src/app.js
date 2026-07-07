@@ -21,15 +21,20 @@ export function createApp() {
   app.use(express.urlencoded({ extended: true, limit: '1mb' }));
   app.use(mongoSanitize());
 
-  const allowedOrigins = (process.env.CLIENT_ORIGIN || 'http://localhost:5173')
-    .split(',')
-    .map((o) => o.trim());
+  // Production origin is always allowed; additional origins can be injected via
+  // the CLIENT_ORIGIN env var (comma-separated) for staging / local dev.
+  const allowedOrigins = new Set([
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'https://nfinity-partner.vercel.app',
+    ...((process.env.CLIENT_ORIGIN || '').split(',').map((o) => o.trim()).filter(Boolean)),
+  ]);
 
   app.use(
     cors({
       origin(origin, callback) {
         // Allow tools like curl/Postman (no Origin header) and any configured origin.
-        if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+        if (!origin || allowedOrigins.has(origin)) return callback(null, true);
         callback(new Error(`Origin ${origin} not allowed by CORS`));
       },
       credentials: true,
