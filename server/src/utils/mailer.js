@@ -1,41 +1,37 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 import { logger } from './logger.js';
 
-let transporter = null;
+let client = null;
 
-function getTransporter() {
-  if (!process.env.SMTP_HOST) return null;
-  if (transporter) return transporter;
-
-  transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT) || 587,
-    secure: Number(process.env.SMTP_PORT) === 465,
-    auth: process.env.SMTP_USER
-      ? { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS }
-      : undefined,
-  });
-
-  return transporter;
+function getClient() {
+  if (!process.env.RESEND_API_KEY) return null;
+  if (client) return client;
+  client = new Resend(process.env.RESEND_API_KEY);
+  return client;
 }
 
 // Fire-and-forget: never let an email failure break the lead-submission request.
 export async function notifyNewLead(lead) {
   const to = process.env.LEAD_NOTIFICATION_EMAIL;
-  const t = getTransporter();
+  const from = process.env.SMTP_FROM || 'onboarding@resend.dev';
+  const resend = getClient();
 
-  if (!t || !to) {
-    logger.debug('SMTP not configured — skipping lead notification email.');
+  if (!resend) {
+    logger.warn('RESEND_API_KEY not set — lead notification email skipped.');
+    return;
+  }
+  if (!to) {
+    logger.warn('LEAD_NOTIFICATION_EMAIL not set — lead notification email skipped.');
     return;
   }
 
   try {
-    await t.sendMail({
-      from: `"Nfinity Partner Website" <${process.env.SMTP_USER}>`,
+    const { data, error } = await resend.emails.send({
+      from: `Nfinity Partner Website <${from}>`,
       to,
       subject: `New lead: ${lead.name} (${lead.brandName || 'No brand name'})`,
       html: `
-        <h2>New website lead</h2>
+        <h2 style="color:#1a1a2e;">New Website Lead</h2>
         <p><strong>Name:</strong> ${lead.name}</p>
         <p><strong>Brand:</strong> ${lead.brandName || '—'}</p>
         <p><strong>Email:</strong> ${lead.email}</p>
@@ -44,8 +40,16 @@ export async function notifyNewLead(lead) {
         <p><strong>Biggest bottleneck:</strong> ${lead.bottleneck}</p>
         <p><strong>Message:</strong> ${lead.message || '—'}</p>
         <p><strong>Source page:</strong> ${lead.sourcePage || '—'}</p>
+        <hr/>
+        <p style="color:#888;font-size:12px;">Submitted at ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST</p>
       `,
     });
+
+    if (error) {
+      logger.error(`Resend error: ${JSON.stringify(error)}`);
+    } else {
+      logger.info(`Lead notification email sent — id: ${data.id}`);
+    }
   } catch (err) {
     logger.error(`Failed to send lead notification email: ${err.message}`);
   }
