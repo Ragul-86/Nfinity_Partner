@@ -5,8 +5,8 @@ import { GlassCard } from '../ui/GlassCard.jsx';
 /** { story: string } */
 export function FounderSection({ story }) {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-      <GlassCard className="grid gap-10 p-10 lg:grid-cols-[280px_1fr] lg:p-14">
+    <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-24">
+      <GlassCard className="grid gap-10 p-6 sm:p-8 lg:grid-cols-[280px_1fr] lg:p-14">
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           <div className="relative h-32 w-32">
             {/* Soft cyan glow behind the photo, same color language as the

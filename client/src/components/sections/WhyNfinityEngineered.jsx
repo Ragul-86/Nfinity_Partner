@@ -44,8 +44,8 @@ export function WhyNfinityEngineered({ image }) {
   const contentRef = useScrollReveal({ threshold: 0.2 });
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-      <div className="grid items-center gap-14 lg:grid-cols-[13fr_12fr] lg:gap-20">
+    <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-24">
+      <div className="grid items-center gap-10 lg:grid-cols-[13fr_12fr] lg:gap-20">
         <div ref={contentRef} className="reveal">
           <span className="relative inline-flex items-center overflow-hidden rounded-full border border-[rgba(0,255,255,0.35)] bg-[linear-gradient(135deg,rgba(0,255,255,0.08),rgba(0,120,255,0.05))] px-[28px] py-[14px] text-[clamp(18px,1.4vw,20px)] font-bold uppercase tracking-[1px] text-[#43F3FF] shadow-[0_0_20px_rgba(0,255,255,0.25),0_0_40px_rgba(0,255,255,0.10)] backdrop-blur-[12px]">
             <span
@@ -55,21 +55,21 @@ export function WhyNfinityEngineered({ image }) {
             />
             <span className="relative">Why Nfinity Partner</span>
           </span>
-          <h2 className="mt-5 font-display text-4xl font-extrabold leading-[0.97] tracking-tight text-white-100 sm:text-5xl lg:text-[clamp(72px,6vw,80px)]">
+          <h2 className="mt-5 font-display text-3xl font-extrabold leading-[0.97] tracking-tight text-white-100 sm:text-4xl lg:text-[clamp(60px,6vw,80px)]">
             Because Profit
             <br />
             Isn&apos;t Luck.
             <br />
             It&apos;s Engineered.
           </h2>
-          <p className="mt-10 max-w-[600px] text-lg text-slate-300 sm:text-xl lg:text-[28px]">
+          <p className="mt-6 max-w-[600px] text-base text-slate-300 sm:text-lg lg:mt-10 lg:text-[28px]">
             We don&apos;t optimize for vanity metrics.
             <br />
             We build profitable growth systems that scale.
           </p>
-          <ul className="mt-6 flex flex-col gap-7">
+          <ul className="mt-6 flex flex-col gap-4 sm:gap-7">
             {FEATURE_POINTS.map((point) => (
-              <li key={point} className="flex items-center gap-4 text-[30px] font-semibold leading-snug text-white-100">
+              <li key={point} className="flex items-center gap-4 text-lg font-semibold leading-snug text-white-100 sm:text-2xl lg:text-[30px]">
                 <CheckCircle2 size={26} className="shrink-0 text-cyan-glow-400" />
                 <span>{point}</span>
               </li>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import { GlassCard } from '../ui/GlassCard.jsx';
 
@@ -6,6 +6,7 @@ import { GlassCard } from '../ui/GlassCard.jsx';
 export function TestimonialSlider({ testimonials = [] }) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const touchStartX = useRef(null);
 
   useEffect(() => {
     if (paused || testimonials.length <= 1) return;
@@ -17,15 +18,28 @@ export function TestimonialSlider({ testimonials = [] }) {
   const current = testimonials[index];
 
   return (
-    <section className="mx-auto max-w-4xl px-6 py-24 lg:px-8">
+    <section className="mx-auto max-w-4xl px-6 py-14 lg:px-8 lg:py-24">
       <div
         className="relative"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onFocus={() => setPaused(true)}
         onBlur={() => setPaused(false)}
+        onTouchStart={(e) => {
+          touchStartX.current = e.touches[0].clientX;
+          setPaused(true);
+        }}
+        onTouchEnd={(e) => {
+          if (touchStartX.current === null) return;
+          const dx = e.changedTouches[0].clientX - touchStartX.current;
+          touchStartX.current = null;
+          if (Math.abs(dx) < 40) return; // ignore micro-taps
+          if (dx < 0) setIndex((i) => (i + 1) % testimonials.length);
+          else setIndex((i) => (i - 1 + testimonials.length) % testimonials.length);
+          setPaused(false);
+        }}
       >
-        <GlassCard className="p-10 text-center">
+        <GlassCard className="p-6 text-center sm:p-10">
           <Quote size={32} className="mx-auto text-cyan-glow-400" />
           <p className="mt-6 text-lg text-white-100">"{current.quote}"</p>
           <p className="mt-6 font-display font-semibold text-white-100">{current.clientName}</p>

@@ -1,7 +1,7 @@
 /** { title, subtitle, steps: [{ heading, body }] } — connected-node framework visual */
 export function ApproachSteps({ title = 'Our Approach', subtitle, steps = [] }) {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+    <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-24">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="font-display text-3xl font-bold text-white-100 sm:text-4xl">{title}</h2>
         {subtitle && <p className="mt-4 text-slate-400">{subtitle}</p>}

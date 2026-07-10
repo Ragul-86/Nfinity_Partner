@@ -42,14 +42,14 @@ export default function About() {
 
       <SectionHero
         eyebrow="ABOUT NFINITY PARTNER"
-        eyebrowClassName="border border-glass-border bg-glass-fill px-3 py-1 text-[1.5rem] leading-[2rem] font-medium tracking-wide text-cyan-glow-400"
+        eyebrowClassName="border border-glass-border bg-glass-fill px-3 py-1 text-sm leading-[2rem] font-medium tracking-wide text-cyan-glow-400 sm:text-[1.5rem]"
         headline="Every Business Has A Story. So Does Nfinity."
         subheadline="Nfinity Partner was built on resilience, continuous learning, and a simple belief that businesses deserve growth built on profitability—not just marketing metrics."
         primaryCta={{ label: 'Book A Free Strategy Call', href: '/contact' }}
       />
 
       {/* Our Story */}
-      <section className="mx-auto max-w-4xl px-6 py-24 lg:px-8">
+      <section className="mx-auto max-w-4xl px-6 py-14 lg:px-8 lg:py-24">
         <h2 className="font-display text-3xl font-bold text-white-100 sm:text-4xl">Why Nfinity Partner Exists.</h2>
         <div className="mt-6 space-y-5 text-slate-400">
           <p>
@@ -70,7 +70,7 @@ export default function About() {
       </section>
 
       {/* Why Profit First */}
-      <section className="bg-navy-900 py-24">
+      <section className="bg-navy-900 py-14 lg:py-24">
         <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
           <h2 className="font-display text-3xl font-bold text-white-100 sm:text-4xl">
             Why We Lead With Profit, Not Results.
@@ -90,7 +90,7 @@ export default function About() {
       </section>
 
       {/* Founder Journey */}
-      <section className="mx-auto max-w-4xl px-6 py-24 lg:px-8">
+      <section className="mx-auto max-w-4xl px-6 py-14 lg:px-8 lg:py-24">
         <h2 className="font-display text-3xl font-bold text-white-100 sm:text-4xl">
           From A Pattern She Couldn't Ignore To A Company Built To Fix It.
         </h2>
@@ -154,7 +154,7 @@ export default function About() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-24">
         <div className="grid gap-6 sm:grid-cols-2">
           <GlassCard className="p-8">
             <div className="flex items-center gap-3">

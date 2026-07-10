@@ -29,7 +29,7 @@ export default function Services() {
         primaryCta={{ label: 'Book A Free Strategy Call', href: '/contact' }}
       />
 
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-24">
         {loading && <LoadingState label="Loading services..." />}
         {error && <ErrorState message="Couldn't load services right now." />}
         {!loading && !error && (!services || services.length === 0) && (

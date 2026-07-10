@@ -6,8 +6,8 @@ export function InstagramButton() {
       rel="noopener noreferrer"
       aria-label="Visit our Instagram"
       title="Follow us on Instagram"
-      style={{ animation: 'cardFloatSubtle 3.5s ease-in-out infinite', animationDelay: '0.4s' }}
-      className="fixed bottom-[94px] right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-glow-lg transition-all duration-300 hover:scale-[1.08] hover:shadow-[0_0_32px_rgba(188,24,136,0.5)]"
+      style={{ animation: 'cardFloatSubtle 3.5s ease-in-out infinite', animationDelay: '0.4s', bottom: 'calc(5.875rem + env(safe-area-inset-bottom, 0px))' }}
+      className="fixed right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-glow-lg transition-all duration-300 hover:scale-[1.08] hover:shadow-[0_0_32px_rgba(188,24,136,0.5)]"
     >
       {/* Instagram gradient background */}
       <span

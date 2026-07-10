@@ -170,10 +170,11 @@ export function ComparisonSection() {
   const tableRevealRef = useScrollReveal({ threshold: 0.1 });
 
   return (
-    <section className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8">
-      {/* Soft ambient background glow — sized to stay clear of section edges
-          rather than relying on overflow-hidden, which would otherwise break
-          the table's viewport-relative sticky header (see ComparisonTable). */}
+    <section className="relative mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-24" style={{ overflowX: 'clip' }}>
+      {/* Soft ambient background glow — overflowX:clip on the section prevents
+          this 880px wide div from causing horizontal scrollbar on mobile, while
+          not affecting the table's viewport-relative sticky header (overflow:clip
+          does not create a scroll container, unlike overflow:hidden). */}
       <div
         className="pointer-events-none absolute left-1/2 top-10 -z-10 h-[480px] w-[880px] -translate-x-1/2 rounded-full bg-cyan-glow-400/10 blur-[120px]"
         style={{ animation: 'cardGlowPulse 7s ease-in-out infinite' }}
@@ -190,6 +191,8 @@ export function ComparisonSection() {
 
       <div ref={tableRevealRef} className="reveal mt-14">
         <ComparisonTable />
+        {/* Scroll hint — only visible on mobile where the table requires horizontal scroll */}
+        <p className="mt-3 text-center text-xs text-slate-500 lg:hidden">← Scroll to compare →</p>
       </div>
     </section>
   );

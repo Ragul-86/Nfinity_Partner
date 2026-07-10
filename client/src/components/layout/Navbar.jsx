@@ -104,30 +104,32 @@ export function Navbar() {
       </nav>
 
       {mobileOpen && (
-        <div className="border-t border-glass-border bg-navy-950 px-6 py-6 lg:hidden">
-          <div className="flex flex-col gap-4">
+        <div className="border-t border-glass-border bg-navy-950 px-6 py-4 lg:hidden">
+          <div className="flex flex-col">
             {PRIMARY_NAV.map((item) =>
               item.name === 'Services' ? (
-                <div key={item.name} className="flex flex-col gap-2">
-                  <span className="text-sm font-semibold text-slate-400">Services</span>
-                  <Link to="/services" className="pl-3 text-white-100">
+                <div key={item.name} className="flex flex-col">
+                  <span className="flex min-h-[44px] items-center text-sm font-semibold text-slate-400">Services</span>
+                  <Link to="/services" className="flex min-h-[44px] items-center pl-4 text-white-100 hover:text-cyan-glow-400">
                     All Services
                   </Link>
                   {SERVICES_NAV.map((s) => (
-                    <Link key={s.slug} to={`/services/${s.slug}`} className="pl-3 text-white-100">
+                    <Link key={s.slug} to={`/services/${s.slug}`} className="flex min-h-[44px] items-center pl-4 text-sm text-white-100 hover:text-cyan-glow-400">
                       {s.name}
                     </Link>
                   ))}
                 </div>
               ) : (
-                <Link key={item.name} to={item.href} className="text-white-100">
+                <Link key={item.name} to={item.href} className="flex min-h-[44px] items-center text-white-100 hover:text-cyan-glow-400">
                   {item.name}
                 </Link>
               )
             )}
-            <Button href="/contact" className="mt-2 justify-center">
-              Book A Call
-            </Button>
+            <div className="mt-3">
+              <Button href="/contact" className="w-full justify-center">
+                Book A Call
+              </Button>
+            </div>
           </div>
         </div>
       )}

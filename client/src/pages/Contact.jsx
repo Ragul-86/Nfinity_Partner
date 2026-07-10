@@ -136,7 +136,7 @@ export default function Contact() {
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_380px]">
           {/* Book Your Free Growth Strategy Call form */}
-          <GlassCard className="p-8 lg:p-10">
+          <GlassCard className="p-5 sm:p-8 lg:p-10">
             <h2 className="font-display text-2xl font-bold text-white-100">Book Your Free Growth Strategy Call</h2>
             <p className="mt-2 text-sm text-slate-400">
               Tell us a bit about your brand and we'll be in touch within 24 hours.

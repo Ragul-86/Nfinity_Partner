@@ -11,7 +11,7 @@ import { Badge } from '../ui/Badge.jsx';
  */
 function PartnerCard({ logo }) {
   return (
-    <div className="flex h-[120px] w-[270px] flex-col items-center justify-center rounded-[20px] border border-[rgba(77,235,255,0.25)] bg-glass-fill px-4 shadow-[0_0_24px_rgba(77,235,255,0.18)] backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-[5px] hover:shadow-[0_0_36px_rgba(77,235,255,0.32)]">
+    <div className="flex h-[120px] w-full max-w-[270px] flex-col items-center justify-center rounded-[20px] border border-[rgba(77,235,255,0.25)] bg-glass-fill px-4 shadow-[0_0_24px_rgba(77,235,255,0.18)] backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-[5px] hover:shadow-[0_0_36px_rgba(77,235,255,0.32)]">
       {/* Fixed-height logo slot: each brand mark has a different natural aspect
           ratio, so capping the <img> alone with max-h left shorter/wider logos
           sitting at a different vertical position than taller ones. Centering
@@ -72,7 +72,7 @@ export function SectionHero({
         className="pointer-events-none absolute left-1/2 top-0 h-[480px] w-[800px] -translate-x-1/2 rounded-full bg-electric-blue-500/20 blur-[120px]"
         aria-hidden="true"
       />
-      <div className={`relative mx-auto px-6 py-28 lg:px-8 lg:py-36 ${wrapperMaxWidthClassName}`}>
+      <div className={`relative mx-auto px-6 py-16 sm:py-24 lg:px-8 lg:py-36 ${wrapperMaxWidthClassName}`}>
         <div className={`mx-auto text-center ${containerClassName}`}>
           {eyebrow &&
             (eyebrowClassName ? (

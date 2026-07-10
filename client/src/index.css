@@ -4,14 +4,30 @@
 
 html {
   scroll-behavior: smooth;
+  /* Prevent any absolutely-positioned decorative elements from creating horizontal scrollbar on mobile */
+  overflow-x: hidden;
 }
 
 body {
   background-color: #050b16;
+  /* Belt-and-suspenders: also prevent body from scrolling horizontally */
+  overflow-x: hidden;
 }
 
 ::selection {
   background-color: rgba(47, 111, 255, 0.35);
+}
+
+/* Remove blue flash on tap for a more native-app feel on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ensure fixed navbar doesn't cover content when jumping to anchors on mobile */
+@media (max-width: 767px) {
+  html {
+    scroll-padding-top: 72px;
+  }
 }
 
 /* Gradient text utility for stats/numerals (Section 1.2 typography spec) */

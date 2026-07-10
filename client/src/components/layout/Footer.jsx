@@ -8,7 +8,7 @@ export function Footer() {
   return (
     <footer className="border-t border-glass-border bg-navy-950">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-4 md:gap-12">
           <div className="md:col-span-1">
             <div className="flex items-center gap-2.5">
               <img src="/assets/brand/icon-mono.svg" alt="" className="h-8 w-auto shrink-0" />

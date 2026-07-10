@@ -59,7 +59,7 @@ export default function CaseStudies() {
       <StatsSection stats={STATS} />
 
       {/* Case Study Grid */}
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-3xl font-bold text-white-100 sm:text-4xl">Featured Case Studies.</h2>
         </div>
@@ -80,7 +80,7 @@ export default function CaseStudies() {
       </section>
 
       {/* Latest Insights (Blog) */}
-      <section id="latest-insights" className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <section id="latest-insights" className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-3xl font-bold text-white-100 sm:text-4xl">Latest Insights.</h2>
           <p className="mt-4 text-slate-400">

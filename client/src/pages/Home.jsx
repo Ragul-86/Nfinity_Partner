@@ -111,7 +111,7 @@ export default function Home() {
         </div>
         <StatsSection stats={STATS} />
         <div className="mx-auto max-w-3xl px-6 pt-16 pb-10 text-center lg:px-8">
-          <p className="text-[24px] font-light leading-[1.6] text-slate-400">
+          <p className="text-lg font-light leading-[1.6] text-slate-400 sm:text-[24px]">
             From customer acquisition to repeat purchases, we help D2C and ecommerce brands grow revenue, improve
             margins, and scale with confidence.
           </p>
@@ -119,7 +119,7 @@ export default function Home() {
       </div>
 
       {/* Built For Brands That Want More Than Sales */}
-      <section className="mx-auto max-w-5xl px-6 py-24 text-center lg:px-8">
+      <section className="mx-auto max-w-5xl px-6 py-14 text-center lg:px-8 lg:py-24">
         <div ref={profitabilityRevealRef} className="reveal">
           <Badge className="text-[1.6rem] leading-[2rem]">Built For Brands That Want More Than Sales</Badge>
           <h2 className="mt-6 font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-white-100 sm:text-5xl lg:text-[clamp(2px,6vw,60px)]">
@@ -154,7 +154,7 @@ export default function Home() {
       </section>
 
       {/* Services Overview */}
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-3xl font-bold text-white-100 sm:text-4xl">What We Do.</h2>
         </div>

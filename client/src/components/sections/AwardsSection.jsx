@@ -148,7 +148,7 @@ function SpotlightLayout({ awards, featuredImages }) {
   return (
     <section
       ref={wrapperRef}
-      className={`relative mx-auto max-w-7xl px-6 py-24 lg:px-8 ${
+      className={`relative mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-24 ${
         pinned ? 'lg:h-[calc(100vh*var(--stage-count))] lg:py-0' : ''
       }`}
       style={pinned ? { '--stage-count': count } : undefined}
@@ -182,7 +182,7 @@ export function AwardsSection({ awards = [], images = [], featuredImages = [] })
   ));
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+    <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-24">
       {images.length > 0 ? (
         <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
           <div className="flex flex-col gap-6">{awardCards}</div>

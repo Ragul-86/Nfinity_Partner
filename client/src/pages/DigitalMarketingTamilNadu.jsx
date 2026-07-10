@@ -182,14 +182,14 @@ export default function DigitalMarketingTamilNadu() {
       {/* ── HERO ───────────────────────────────────────────────────────────── */}
       <SectionHero
         eyebrow="Tamil Nadu's Profit-First Growth Agency"
-        eyebrowClassName="border border-glass-border bg-glass-fill px-3 py-1 text-[1.5rem] leading-[2rem] font-medium tracking-wide text-cyan-glow-400"
+        eyebrowClassName="border border-glass-border bg-glass-fill px-3 py-1 text-sm leading-[2rem] font-medium tracking-wide text-cyan-glow-400 sm:text-[1.5rem]"
         headline="Digital Marketing Agency in Tamil Nadu."
         subheadline="Helping businesses across Tamil Nadu grow through profit-first digital marketing, branding, and technology solutions."
         primaryCta={{ label: 'Book Your Free Growth Strategy Call', href: '/contact' }}
       />
 
       {/* ── OUR SERVICES ───────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-cyan-glow-400">What We Do</p>
           <h2 className="mt-3 font-display text-3xl font-bold text-white-100 sm:text-4xl">Our Services.</h2>
@@ -241,7 +241,7 @@ export default function DigitalMarketingTamilNadu() {
       </section>
 
       {/* ── WHY CHOOSE NFINITY PARTNER ─────────────────────────────────────── */}
-      <section className="bg-navy-900 py-24">
+      <section className="bg-navy-900 py-14 lg:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-cyan-glow-400">Why Us</p>
@@ -281,7 +281,7 @@ export default function DigitalMarketingTamilNadu() {
       </section>
 
       {/* ── OUR PROCESS ────────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-cyan-glow-400">How We Work</p>
           <h2 className="mt-3 font-display text-3xl font-bold text-white-100 sm:text-4xl">Our Process.</h2>
