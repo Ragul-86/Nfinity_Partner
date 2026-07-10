@@ -153,7 +153,7 @@ function SpotlightLayout({ awards, featuredImages }) {
   return (
     <section
       ref={wrapperRef}
-      className={`relative mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-24 ${
+      className={`relative mx-auto max-w-7xl px-6 pt-14 pb-0 lg:px-8 lg:py-24 ${
         pinned ? 'lg:h-[calc(100vh*var(--stage-count))] lg:py-0' : ''
       }`}
       style={pinned ? { '--stage-count': count } : undefined}
