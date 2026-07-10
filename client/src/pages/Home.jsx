@@ -104,7 +104,7 @@ export default function Home() {
 
       {/* Stats */}
       <div>
-        <div className="mx-auto max-w-3xl px-6 pt-16 text-center lg:px-8">
+        <div className="mx-auto max-w-3xl px-6 pt-16 pb-10 text-center lg:px-8 lg:pb-16">
           <h2 className="font-display text-3xl font-bold text-white-100 sm:text-4xl">
             The Numbers Behind Our Success.
           </h2>
