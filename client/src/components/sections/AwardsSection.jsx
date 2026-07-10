@@ -4,9 +4,9 @@ import { GlassCard } from '../ui/GlassCard.jsx';
 import { useScrollReveal } from '../../hooks/useScrollReveal.js';
 
 /**
- * Simple stacked award photo card — used by the non-spotlight (no featuredImages) layout.
- * Continuous float keyframe on outer wrapper, hover scale on inner card, on separate
- * nodes so they never fight over the same transform property.
+ * Simple floating award photo card — used by the fallback (no featuredImages) layout.
+ * Float animation on outer wrapper, hover scale on inner so neither fights the other's
+ * transform property.
  */
 function AwardImageCard({ image, index }) {
   return (
@@ -28,66 +28,27 @@ function AwardImageCard({ image, index }) {
 }
 
 /**
- * Mobile-only: one image inside a glass frame with its own IntersectionObserver
- * scroll-reveal (the `.reveal` CSS class: opacity 0→1, translateY 16px→0, 700ms
- * ease-out). Each `AwardMobileImage` instance watches its own element independently,
- * so images appear sequentially as the user scrolls — natural visual stagger, no
- * manual delay needed.
+ * Unified crossfade image frame — active on ALL screen sizes.
+ *
+ * All images are absolutely-stacked inside a fixed-ratio container.
+ * `activeIndex` drives which photo is visible via inline opacity/transform.
+ * Three separate wrapper nodes keep concerns isolated:
+ *   1. outer  → `.award-image-reveal` entrance (slide-from-right, fires once)
+ *   2. middle → continuous `cardFloat` keyframe animation
+ *   3. inner  → `position: relative; aspect-ratio` crop/layout frame
+ *   4. <img>  → per-image crossfade (opacity + scale + translateY, 500ms)
+ * No two animated properties ever share the same DOM node.
  */
-function AwardMobileImage({ image, index }) {
+function AwardCrossfadeImage({ images, activeIndex }) {
   const revealRef = useScrollReveal({ threshold: 0.15 });
   return (
     <div
       ref={revealRef}
-      className="reveal relative aspect-[720/470] w-full overflow-hidden rounded-[24px] border border-[rgba(77,235,255,0.3)] bg-navy-950/40 shadow-[0_0_50px_rgba(77,235,255,0.25),0_25px_70px_rgba(0,0,0,0.45)] backdrop-blur-md"
+      className="award-image-reveal w-full max-w-[calc(100vw-48px)] lg:max-w-[720px]"
     >
-      <img
-        src={image.src}
-        alt={image.alt}
-        loading={index === 0 ? 'eager' : 'lazy'}
-        decoding="async"
-        className="absolute inset-0 h-full w-full object-contain"
-      />
-    </div>
-  );
-}
-
-/**
- * Mobile layout (hidden at lg+): all award images rendered as vertically-stacked
- * glass cards, each with its own scroll-reveal entrance. Replaces the scroll-driven
- * crossfade approach on small screens where the section is too short relative to the
- * viewport for scroll-progress-based switching to feel natural.
- */
-function AwardMobileStack({ images }) {
-  return (
-    <div className="flex w-full flex-col gap-6 lg:hidden">
-      {images.map((image, i) => (
-        <AwardMobileImage key={image.src} image={image} index={i} />
-      ))}
-    </div>
-  );
-}
-
-/**
- * Desktop/tablet (hidden below lg): single fixed-aspect-ratio frame where all images
- * are stacked via `position: absolute`; `activeIndex` (driven by scroll progress in
- * SpotlightLayout) crossfades the visible photo with:
- *   • opacity 0 ↔ 1
- *   • scale 0.98 → 1
- *   • translateY 16px → 0
- *   • 500ms ease-out, will-change for GPU compositing
- *
- * The reveal-from-right entrance (.award-image-reveal CSS) and the continuous gentle
- * float live on two separate outer wrapper elements so neither ever contends with the
- * crossfade styles on the same node.
- */
-function AwardSpotlightImage({ images, activeIndex }) {
-  const revealRef = useScrollReveal({ threshold: 0.25 });
-  return (
-    <div ref={revealRef} className="award-image-reveal mx-auto hidden w-full max-w-[720px] lg:block">
       <div className="w-full" style={{ animation: 'cardFloat 6s ease-in-out infinite' }}>
         <div className="relative aspect-[720/470] w-full overflow-hidden rounded-[24px] border border-[rgba(77,235,255,0.3)] bg-navy-950/40 shadow-[0_0_50px_rgba(77,235,255,0.25),0_25px_70px_rgba(0,0,0,0.45)] backdrop-blur-md">
-          {images.map((image, index) => (
+          {images.map((image, idx) => (
             <img
               key={image.src}
               src={image.src}
@@ -96,10 +57,11 @@ function AwardSpotlightImage({ images, activeIndex }) {
               decoding="async"
               className="absolute inset-0 h-full w-full object-contain"
               style={{
-                opacity: index === activeIndex ? 1 : 0,
-                transform: index === activeIndex
-                  ? 'scale(1) translateY(0px)'
-                  : 'scale(0.98) translateY(16px)',
+                opacity: idx === activeIndex ? 1 : 0,
+                transform:
+                  idx === activeIndex
+                    ? 'scale(1) translateY(0px)'
+                    : 'scale(0.98) translateY(16px)',
                 transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
                 willChange: 'opacity, transform',
               }}
@@ -111,25 +73,53 @@ function AwardSpotlightImage({ images, activeIndex }) {
   );
 }
 
+/**
+ * Mobile-only scroll-progress indicator (lg:hidden).
+ * Pill dots: active dot widens to 24px, inactive dots are 6px circles.
+ * Gives users a visual cue that scrolling advances the image.
+ */
+function ImageProgressDots({ count, activeIndex }) {
+  return (
+    <div className="flex items-center justify-center gap-2 pt-1 lg:hidden">
+      {Array.from({ length: count }).map((_, i) => (
+        <span
+          key={i}
+          aria-hidden="true"
+          className="block h-1.5 rounded-full transition-all duration-500 ease-out"
+          style={{
+            width: i === activeIndex ? '24px' : '6px',
+            backgroundColor:
+              i === activeIndex
+                ? 'rgba(77,235,255,0.9)'
+                : 'rgba(77,235,255,0.25)',
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 function SpotlightAwardCard({ award }) {
   return (
-    <GlassCard className="flex flex-col items-center gap-4 p-7 text-center sm:flex-row sm:items-start sm:text-left">
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-electric-blue-500/10">
-        <Award size={24} className="text-cyan-glow-400" />
+    <GlassCard className="flex flex-col items-center gap-3 p-5 text-center sm:flex-row sm:items-start sm:p-6 sm:text-left">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-electric-blue-500/10 sm:h-12 sm:w-12">
+        <Award size={20} className="text-cyan-glow-400" />
       </div>
       <div>
-        <h3 className="font-display font-semibold text-white-100">{award.name}</h3>
-        <p className="mt-1 text-sm text-slate-400">{award.body}</p>
+        <h3 className="font-display text-sm font-semibold text-white-100 sm:text-base">
+          {award.name}
+        </h3>
+        <p className="mt-1 text-xs text-slate-400 sm:text-sm">{award.body}</p>
       </div>
     </GlassCard>
   );
 }
 
-/** Left column: award text card, vertically centered, fades up once on scroll. */
+/** Award text column — vertically centered, fades up once on scroll. */
 function SpotlightContent({ awards }) {
   const ref = useScrollReveal({ threshold: 0.2 });
   return (
-    <div ref={ref} className="reveal flex w-full flex-col justify-center gap-6 lg:max-w-md">
+    <div ref={ref} className="reveal flex w-full flex-col justify-center gap-4 lg:max-w-md lg:gap-6">
       {awards.map((award) => (
         <SpotlightAwardCard key={award.name} award={award} />
       ))}
@@ -138,40 +128,34 @@ function SpotlightContent({ awards }) {
 }
 
 /**
- * SpotlightLayout — premium scroll-storytelling container.
+ * SpotlightLayout — premium scroll-storytelling on EVERY screen size.
  *
- * ─── Desktop / Tablet (lg+) ────────────────────────────────────────────────
+ * ─── How it works (mobile AND desktop) ────────────────────────────────────
  * Section height = (count + 1) × 100vh.
- *   scrollableDistance = (count + 1 − 1) × 100vh = count × 100vh
- *   → each of the `count` images receives exactly 1 full viewport height of
- *     dedicated scroll time before the next crossfade fires.
+ *   scrollableDistance = count × 100vh
+ *   → each of `count` images gets exactly 1 full viewport of scroll time.
  *
- * The sticky stage (text + image) is pinned to `top: 0` while the oversized
- * section scrolls beneath it. A rAF-throttled scroll listener maps progress
- * 0 → 1 to image index 0 → count−1 via Math.floor, and the 500ms CSS
- * transition on each image creates the smooth crossfade.
+ * `position: sticky; top: 0` pins the visible stage (text + image) while
+ * the oversized section scrolls beneath it. A rAF-throttled scroll listener
+ * maps progress 0→1 to imageIndex 0→(count−1) via Math.floor; the 500ms
+ * CSS transitions on each <img> produce the smooth crossfade.
  *
- * Sticky math: the sticky element un-sticks when its bottom (sticky_top +
- * h-screen) reaches the containing section's bottom. With section height =
- * (count+1)×100vh and h-screen = 100vh, that happens at exactly
- * count×100vh of scroll — precisely when progress reaches 1.0. This means
- * the section ends at the same moment sticky releases: zero extra blank
- * space, the FAQ scrolls in immediately.
+ * Sticky math: the sticky element releases when its bottom (top=0 + h-screen)
+ * reaches the section's bottom. With section = (count+1)×100vh and
+ * h-screen = 100vh, this happens at exactly count×100vh of scroll — the
+ * same moment progress hits 1.0. No blank gap before the FAQ.
  *
- * ─── Mobile (below lg) ──────────────────────────────────────────────────────
- * No sticky pinning, no scroll-driven switching. The award card is shown
- * first; all three images follow as vertically-stacked cards, each with its
- * own IntersectionObserver scroll-reveal. Images appear sequentially as the
- * user scrolls — storytelling feel without scroll-jacking on touch screens.
+ * ─── Mobile layout within the sticky viewport ─────────────────────────────
+ * flex-col: award text card (compact) → full-width crossfade image → dots.
+ * Total content on 320px × 568px ≈ 330px → fits with 238px to spare.
+ * `overflow: hidden` on the sticky container prevents any edge-case spillover.
  */
 function SpotlightLayout({ awards, featuredImages }) {
   const wrapperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const count = featuredImages.length;
   const pinned = count > 1;
-
-  // (count + 1) stages → 1 full viewport per image on desktop.
-  const stageCount = count + 1;
+  const stageCount = count + 1; // 1 full viewport of scroll per image
 
   useEffect(() => {
     if (!pinned) return undefined;
@@ -183,51 +167,62 @@ function SpotlightLayout({ awards, featuredImages }) {
       const el = wrapperRef.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
-      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-      const scrollableDistance = Math.max(1, rect.height - viewportHeight);
-      const scrolledIntoWrapper = -rect.top;
-      const progress = Math.min(1, Math.max(0, scrolledIntoWrapper / scrollableDistance));
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const scrollableDistance = Math.max(1, rect.height - vh);
+      const scrolledIn = -rect.top;
+      const progress = Math.min(1, Math.max(0, scrolledIn / scrollableDistance));
       const index = Math.min(count - 1, Math.floor(progress * count));
       setActiveIndex(index);
     };
 
-    const handleScroll = () => {
+    const onScroll = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(computeActiveIndex);
     };
 
     computeActiveIndex();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
     };
   }, [pinned, count]);
 
   return (
     <section
       ref={wrapperRef}
-      className={`relative mx-auto max-w-7xl px-6 pt-14 pb-0 lg:px-8 lg:py-24 ${
-        pinned ? 'lg:h-[calc(100vh*var(--stage-count))] lg:py-0' : ''
+      className={`relative mx-auto max-w-7xl px-6 lg:px-8 ${
+        pinned
+          ? 'h-[calc(100vh*var(--stage-count))] py-0'
+          : 'py-14 lg:py-24'
       }`}
       style={pinned ? { '--stage-count': stageCount } : undefined}
     >
-      <div className={pinned ? 'lg:sticky lg:top-0 lg:flex lg:h-screen lg:items-center' : ''}>
-        <div className="flex w-full flex-col items-center gap-12 lg:flex-row lg:items-center lg:justify-center lg:gap-[60px]">
+      {/* Sticky stage — active on ALL breakpoints when pinned */}
+      <div
+        className={
+          pinned
+            ? 'sticky top-0 flex h-screen items-center overflow-hidden'
+            : undefined
+        }
+      >
+        {/*
+         * Mobile  (flex-col): SpotlightContent → AwardCrossfadeImage → dots
+         * Desktop (flex-row): SpotlightContent ← gap → AwardCrossfadeImage
+         */}
+        <div className="flex w-full flex-col items-center gap-5 sm:gap-7 lg:flex-row lg:items-center lg:justify-center lg:gap-[60px]">
           <SpotlightContent awards={awards} />
-          {/* Desktop: scroll-driven crossfade — hidden on mobile */}
-          <AwardSpotlightImage images={featuredImages} activeIndex={activeIndex} />
-          {/* Mobile: all images stacked, each scroll-reveals independently */}
-          <AwardMobileStack images={featuredImages} />
+          <AwardCrossfadeImage images={featuredImages} activeIndex={activeIndex} />
+          {pinned && <ImageProgressDots count={count} activeIndex={activeIndex} />}
         </div>
       </div>
     </section>
   );
 }
 
-/** { awards: [{ name, body }], images: [{ src, alt }], featuredImages: [{ src, alt }] } */
+/** Public export — spotlight layout when `featuredImages` is provided, basic otherwise. */
 export function AwardsSection({ awards = [], images = [], featuredImages = [] }) {
   if (featuredImages.length > 0) {
     return <SpotlightLayout awards={awards} featuredImages={featuredImages} />;
