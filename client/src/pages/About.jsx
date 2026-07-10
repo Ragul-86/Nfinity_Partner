@@ -195,7 +195,7 @@ export default function About() {
       <WhyNfinity title="What We Value." items={COMPANY_VALUES} />
 
       {/* Awards */}
-      <div>
+      <div className="-mb-10 lg:mb-0">
         <div className="mx-auto max-w-2xl px-6 pt-8 text-center lg:px-8">
           <h2 className="font-display text-3xl font-bold text-white-100 sm:text-4xl">Recognized Along The Way.</h2>
         </div>
