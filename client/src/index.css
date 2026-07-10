@@ -4,14 +4,21 @@
 
 html {
   scroll-behavior: smooth;
-  /* Prevent any absolutely-positioned decorative elements from creating horizontal scrollbar on mobile */
-  overflow-x: hidden;
+  /*
+   * overflow-x: clip instead of hidden.
+   * Both clip overflow content horizontally, but `clip` does NOT create a
+   * scroll container — `hidden` does. A scroll container ancestor breaks
+   * `position: sticky` on iOS Safari and some Android WebViews because
+   * sticky elements pin relative to the nearest scroll ancestor, not the
+   * window. With `clip`, sticky works relative to the window scroll as
+   * intended. Supported: Chrome 90+, Firefox 81+, Safari 16+.
+   */
+  overflow-x: clip;
 }
 
 body {
   background-color: #050b16;
-  /* Belt-and-suspenders: also prevent body from scrolling horizontally */
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 ::selection {
