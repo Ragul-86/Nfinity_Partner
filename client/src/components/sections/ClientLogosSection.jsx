@@ -9,7 +9,7 @@ import { Button } from '../ui/Button.jsx';
 export function ClientLogosSection({ title, subtitle, logos = [], cta }) {
   return (
     <section className="border-b border-glass-border bg-navy-950">
-      <div className="mx-auto max-w-[1400px] px-6 py-14 lg:px-8 lg:py-28">
+      <div className="mx-auto max-w-[1400px] px-6 py-12 lg:px-8 lg:py-20">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Logo grid */}
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">

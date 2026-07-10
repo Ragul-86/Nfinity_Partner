@@ -199,7 +199,7 @@ export default function DigitalMarketingTamilNadu() {
           </p>
         </div>
 
-        <div ref={servicesRevealRef} className="reveal mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div ref={servicesRevealRef} className="reveal mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((service, i) => {
             const Icon = Icons[service.icon] || Icons.Sparkles;
             return (
@@ -254,7 +254,7 @@ export default function DigitalMarketingTamilNadu() {
             </p>
           </div>
 
-          <div ref={whyRevealRef} className="reveal mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div ref={whyRevealRef} className="reveal mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {WHY_ITEMS.map((item, i) => {
               const Icon = Icons[item.icon] || Icons.Sparkles;
               return (
@@ -290,7 +290,7 @@ export default function DigitalMarketingTamilNadu() {
           </p>
         </div>
 
-        <div ref={processRevealRef} className="reveal mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div ref={processRevealRef} className="reveal mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {PROCESS_STEPS.map((step, i) => {
             const Icon = Icons[step.icon] || Icons.Sparkles;
             return (

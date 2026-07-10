@@ -55,8 +55,13 @@ function AwardSpotlightImage({ images, activeIndex }) {
               alt={image.alt}
               loading="lazy"
               decoding="async"
-              className="absolute inset-0 h-full w-full object-contain transition-opacity duration-700 ease-out"
-              style={{ opacity: index === activeIndex ? 1 : 0 }}
+              className="absolute inset-0 h-full w-full object-contain"
+              style={{
+                opacity: index === activeIndex ? 1 : 0,
+                transform: index === activeIndex ? 'scale(1) translateY(0px)' : 'scale(0.98) translateY(16px)',
+                transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
+                willChange: 'opacity, transform',
+              }}
             />
           ))}
         </div>

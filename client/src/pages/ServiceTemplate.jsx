@@ -45,7 +45,7 @@ export default function ServiceTemplate() {
 
       <SectionHero
         eyebrow={service.name}
-        eyebrowClassName="border border-glass-border bg-glass-fill px-3 py-1 text-[1.5rem] leading-[2rem] font-medium tracking-wide text-cyan-glow-400"
+        eyebrowClassName="border border-glass-border bg-glass-fill px-3 py-1 text-sm leading-[2rem] font-medium tracking-wide text-cyan-glow-400 sm:text-[1.5rem]"
         headline={service.heroHeadline}
         subheadline={service.heroSubheadline}
         primaryCta={{ label: 'Book A Free Strategy Call', href: '/contact' }}

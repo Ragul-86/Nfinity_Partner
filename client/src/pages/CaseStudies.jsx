@@ -87,7 +87,7 @@ export default function CaseStudies() {
             Practical, profit-first breakdowns on performance marketing, CRO, and growth systems.
           </p>
         </div>
-        <div className="mt-14">
+        <div className="mt-10">
           {blogLoading && <LoadingState label="Loading articles..." />}
           {blogError && <ErrorState message="Couldn't load articles right now." />}
           {!blogLoading && !blogError && (!blogPosts || blogPosts.length === 0) && (

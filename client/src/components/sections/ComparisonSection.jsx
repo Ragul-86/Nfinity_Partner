@@ -182,14 +182,14 @@ export function ComparisonSection() {
       />
 
       <div ref={headerRevealRef} className="reveal mx-auto max-w-3xl text-center">
-        <Badge className="text-[1.5rem] leading-[3rem]">How We Scale Profitability</Badge>
+        <Badge className="text-xs leading-[3rem] sm:text-[1.5rem]">How We Scale Profitability</Badge>
         <h2 className="mt-6 font-display text-3xl font-bold text-white-100 sm:text-4xl">
           Why founders choose Nfinity Partner.
         </h2>
         <p className="mt-4 text-slate-400">Most agencies optimize Results. We optimize profitability.</p>
       </div>
 
-      <div ref={tableRevealRef} className="reveal mt-14">
+      <div ref={tableRevealRef} className="reveal mt-10">
         <ComparisonTable />
         {/* Scroll hint — only visible on mobile where the table requires horizontal scroll */}
         <p className="mt-3 text-center text-xs text-slate-500 lg:hidden">← Scroll to compare →</p>

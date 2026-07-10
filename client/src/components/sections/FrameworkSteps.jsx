@@ -7,13 +7,13 @@ import { GlassCard } from '../ui/GlassCard.jsx';
  */
 export function FrameworkSteps({ sections = [] }) {
   return (
-    <section className="mx-auto max-w-5xl px-6 py-20 lg:px-8">
-      <div className="flex flex-col gap-6">
+    <section className="mx-auto max-w-5xl px-6 py-14 lg:px-8 lg:py-20">
+      <div className="flex flex-col gap-4 sm:gap-6">
         {sections
           .slice()
           .sort((a, b) => a.order - b.order)
           .map((section, i) => (
-            <GlassCard key={section.heading} className="flex gap-6 p-8">
+            <GlassCard key={section.heading} className="flex gap-4 p-5 sm:gap-6 sm:p-8">
               <span className="font-display font-tabular text-2xl font-bold text-gradient-accent shrink-0">
                 {String(i + 1).padStart(2, '0')}
               </span>

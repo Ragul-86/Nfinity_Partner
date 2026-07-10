@@ -55,7 +55,7 @@ export function WhyNfinityEngineered({ image }) {
             />
             <span className="relative">Why Nfinity Partner</span>
           </span>
-          <h2 className="mt-5 font-display text-3xl font-extrabold leading-[0.97] tracking-tight text-white-100 sm:text-4xl lg:text-[clamp(60px,6vw,80px)]">
+          <h2 className="mt-5 font-display text-[44px] font-extrabold leading-[1.05] tracking-tight text-white-100 sm:text-[52px] sm:leading-[1.0] lg:text-[clamp(72px,6vw,88px)] lg:leading-[0.97]">
             Because Profit
             <br />
             Isn&apos;t Luck.

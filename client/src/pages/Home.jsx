@@ -121,7 +121,7 @@ export default function Home() {
       {/* Built For Brands That Want More Than Sales */}
       <section className="mx-auto max-w-5xl px-6 py-14 text-center lg:px-8 lg:py-24">
         <div ref={profitabilityRevealRef} className="reveal">
-          <Badge className="text-[1.6rem] leading-[2rem]">Built For Brands That Want More Than Sales</Badge>
+          <Badge className="max-w-full whitespace-normal text-center text-[10px] leading-[2rem] sm:text-[1.6rem]">Built For Brands That Want More Than Sales</Badge>
           <h2 className="mt-6 font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-white-100 sm:text-5xl lg:text-[clamp(2px,6vw,60px)]">
             we don't chase roas.
             <br />

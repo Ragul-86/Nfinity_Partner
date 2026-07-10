@@ -55,9 +55,9 @@ export default function CaseStudyDetail() {
           className="pointer-events-none absolute left-1/2 top-0 h-[480px] w-[800px] -translate-x-1/2 rounded-full bg-electric-blue-500/20 blur-[120px]"
           aria-hidden="true"
         />
-        <div className="relative mx-auto max-w-4xl px-6 py-28 text-center lg:px-8 lg:py-32">
+        <div className="relative mx-auto max-w-4xl px-6 py-16 text-center sm:py-24 lg:px-8 lg:py-32">
           <Badge>{caseStudy.industry}</Badge>
-          <p className="mt-6 font-display font-tabular text-5xl font-extrabold text-gradient-accent sm:text-6xl">
+          <p className="mt-6 font-display font-tabular text-4xl font-extrabold text-gradient-accent sm:text-5xl lg:text-6xl">
             {caseStudy.heroMetric}
           </p>
           <h1 className="mt-4 font-display text-3xl font-bold text-white-100 sm:text-4xl">{caseStudy.clientName}</h1>

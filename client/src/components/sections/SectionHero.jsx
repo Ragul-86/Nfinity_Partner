@@ -72,7 +72,7 @@ export function SectionHero({
         className="pointer-events-none absolute left-1/2 top-0 h-[480px] w-[800px] -translate-x-1/2 rounded-full bg-electric-blue-500/20 blur-[120px]"
         aria-hidden="true"
       />
-      <div className={`relative mx-auto px-6 py-16 sm:py-24 lg:px-8 lg:py-36 ${wrapperMaxWidthClassName}`}>
+      <div className={`relative mx-auto px-6 pt-16 pb-10 sm:pt-24 sm:pb-12 lg:px-8 lg:pt-36 lg:pb-12 ${wrapperMaxWidthClassName}`}>
         <div className={`mx-auto text-center ${containerClassName}`}>
           {eyebrow &&
             (eyebrowClassName ? (
