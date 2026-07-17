@@ -101,17 +101,19 @@ export default function Contact() {
     }
   }
 
-  // Precise office address used for the map card only.
-  // The embed query intentionally omits the business name: Google can't find
-  // "Nfinity Partner" as a registered Place, so including the name triggers
-  // a fuzzy multi-result search view instead of a single precise pin.
-  // Using only the street address forces the geocoder to resolve to the exact
-  // location at high zoom (z=17).
+  // Exact coordinates confirmed from the live Nfinity Partner Google Maps listing:
+  // https://www.google.com/maps/place/Nfinity+Partner/@11.1246455,77.3335776,17z
+  // Using lat/lng instead of an address string guarantees a single precise pin
+  // regardless of how Google's geocoder interprets the street address text.
   const OFFICE_NAME = 'Nfinity Partner';
   const OFFICE_ADDRESS =
     'No. 6B, 2nd Floor, Teachers Colony, Angeripalayam Main Rd, 2nd Street, Tiruppur, Tamil Nadu 641602';
-  const mapEmbedSrc = `https://maps.google.com/maps?q=${encodeURIComponent(OFFICE_ADDRESS)}&z=17&output=embed`;
-  const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(OFFICE_ADDRESS)}`;
+  const OFFICE_LAT = 11.1246455;
+  const OFFICE_LNG = 77.3335776;
+  // q=lat,lng forces an exact coordinate pin; z=18 zooms to building level.
+  const mapEmbedSrc = `https://maps.google.com/maps?q=${OFFICE_LAT},${OFFICE_LNG}&z=18&output=embed`;
+  // Directions destination uses coordinates so the pin lands precisely on the office.
+  const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${OFFICE_LAT},${OFFICE_LNG}`;
 
   return (
     <>
