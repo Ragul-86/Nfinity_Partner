@@ -109,7 +109,7 @@ export default function Contact() {
   // location at high zoom (z=17).
   const OFFICE_NAME = 'Nfinity Partner';
   const OFFICE_ADDRESS =
-    'No. 6, 2nd Floor, Teachers Colony, Angeripalayam Main Rd, 2nd Street, Tiruppur, Tamil Nadu 641602';
+    'No. 6B, 2nd Floor, Teachers Colony, Angeripalayam Main Rd, 2nd Street, Tiruppur, Tamil Nadu 641602';
   const mapEmbedSrc = `https://maps.google.com/maps?q=${encodeURIComponent(OFFICE_ADDRESS)}&z=17&output=embed`;
   const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(OFFICE_ADDRESS)}`;
 
@@ -239,7 +239,7 @@ export default function Contact() {
 
               {/* Address — 3-line display, wraps naturally on narrow screens */}
               <p className="mt-2 text-sm leading-relaxed text-slate-400">
-                No. 6, 2nd Floor, Teachers Colony,
+                No. 6B, 2nd Floor, Teachers Colony,
                 <br />
                 Angeripalayam Main Rd, 2nd Street,
                 <br />
