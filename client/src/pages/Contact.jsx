@@ -101,16 +101,17 @@ export default function Contact() {
     }
   }
 
-  // Full, precise office address (more specific than CONTACT.address) so the
-  // map embed geocodes to exactly one pin at high zoom instead of a fuzzy
-  // multi-result business search. Scoped to this map card only — the
-  // sidebar contact card and footer keep using CONTACT.address as-is.
+  // Precise office address used for the map card only.
+  // The embed query intentionally omits the business name: Google can't find
+  // "Nfinity Partner" as a registered Place, so including the name triggers
+  // a fuzzy multi-result search view instead of a single precise pin.
+  // Using only the street address forces the geocoder to resolve to the exact
+  // location at high zoom (z=17).
   const OFFICE_NAME = 'Nfinity Partner';
   const OFFICE_ADDRESS =
     'No. 6, 2nd Floor, Teachers Colony, Angeripalayam Main Rd, 2nd Street, Tiruppur, Tamil Nadu 641602';
-  const mapQuery = encodeURIComponent(`${OFFICE_NAME}, ${OFFICE_ADDRESS}`);
-  const mapEmbedSrc = `https://www.google.com/maps?q=${mapQuery}&z=18&output=embed`;
-  const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`;
+  const mapEmbedSrc = `https://maps.google.com/maps?q=${encodeURIComponent(OFFICE_ADDRESS)}&z=17&output=embed`;
+  const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(OFFICE_ADDRESS)}`;
 
   return (
     <>
@@ -225,19 +226,39 @@ export default function Contact() {
               </div>
             </GlassCard>
 
-            <GlassCard className="overflow-hidden p-0">
-              <div className="p-5 pb-4">
-                <p className="font-display font-semibold text-white-100">{OFFICE_NAME}</p>
-                <p className="mt-1 text-sm text-slate-400">{OFFICE_ADDRESS}</p>
+            {/*
+              Map card: consistent padding throughout so nothing overlaps.
+              Order: name → address (24px gap below) → map → button (24px gap above).
+              The iframe lives inside its own overflow:hidden rounded wrapper so
+              border-radius is applied cleanly and the map never bleeds into the
+              address text or the card edges.
+            */}
+            <GlassCard className="p-5 sm:p-6">
+              {/* Office name */}
+              <p className="font-display font-semibold text-white-100">{OFFICE_NAME}</p>
+
+              {/* Address — 3-line display, wraps naturally on narrow screens */}
+              <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                No. 6, 2nd Floor, Teachers Colony,
+                <br />
+                Angeripalayam Main Rd, 2nd Street,
+                <br />
+                Tiruppur, Tamil Nadu 641602
+              </p>
+
+              {/* Map — 24px gap from address, contained with rounded clip */}
+              <div className="mt-6 overflow-hidden rounded-xl">
+                <iframe
+                  title="Nfinity Partner office location"
+                  className="block h-60 w-full border-0 sm:h-72"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src={mapEmbedSrc}
+                />
               </div>
-              <iframe
-                title="Nfinity Partner office location"
-                className="h-56 w-full border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                src={mapEmbedSrc}
-              />
-              <div className="p-5">
+
+              {/* Directions button — 24px gap from map */}
+              <div className="mt-6">
                 <Button href={directionsHref} variant="secondary" withArrow>
                   Get Directions
                 </Button>
