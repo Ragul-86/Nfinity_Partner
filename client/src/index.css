@@ -153,3 +153,62 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ── Performance: respect reduced-motion preference ────────────────────────
+   Users who opt into "reduce motion" (accessibility/system setting) get
+   instant state changes instead of slow transitions. This also benefits
+   Lighthouse INP because no long-duration animations block the main thread
+   from responding to input during a page-load paint storm. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Snap scroll-reveal elements to their final state immediately */
+  .reveal,
+  .award-image-reveal,
+  .why-engineered-image-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .row-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ── Performance: compositor-only layer hints ───────────────────────────────
+   `will-change` tells the browser to promote these elements to their own
+   composited layer *before* the animation fires, eliminating mid-animation
+   layer-promotion jank. Only applied to elements that actually animate;
+   blanket use of will-change wastes GPU memory. */
+.reveal,
+.award-image-reveal,
+.why-engineered-image-reveal {
+  will-change: opacity, transform;
+}
+
+/* Release the layer hint once the element has settled — prevents
+   permanently elevated GPU memory usage on long-lived elements. */
+.reveal.is-visible,
+.award-image-reveal.is-visible,
+.why-engineered-image-reveal.is-visible {
+  will-change: auto;
+}
+
+/* ── Performance: layout containment for independent sections ───────────────
+   `contain: layout paint` tells the browser that changes *inside* the
+   section can't affect layout *outside* it.  This allows the browser to
+   skip re-laying-out the rest of the page when section-internal state
+   changes (e.g. the count-up animation in StatsSection). */
+section {
+  contain: layout paint;
+}

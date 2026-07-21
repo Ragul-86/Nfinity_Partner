@@ -49,6 +49,21 @@ export function createApp() {
 
   app.get('/health', (req, res) => res.json({ success: true, message: 'OK', uptime: process.uptime() }));
 
+  // ── Cache-Control for read-only API responses ────────────────────────────
+  // Content collections (services, case studies, testimonials, blog) change
+  // infrequently. Allowing browsers and CDN edges to cache GET responses for
+  // 5 minutes with a 10-minute stale-while-revalidate window means returning
+  // users get instant page loads from cache while content stays reasonably fresh.
+  // POST/PATCH (lead submissions, form posts) are not affected.
+  app.use('/api/v1', (req, res, next) => {
+    if (req.method === 'GET') {
+      res.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=600');
+    } else {
+      res.set('Cache-Control', 'no-store');
+    }
+    next();
+  });
+
   app.use('/api/v1', apiLimiter, apiRoutes);
 
   app.use(notFoundHandler);

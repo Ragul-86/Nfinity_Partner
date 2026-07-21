@@ -26,6 +26,8 @@ export function ClientLogosSection({ eyebrow, title, subtitle, logos = [], cta }
                   alt={logo.alt}
                   loading="lazy"
                   decoding="async"
+                  width="160"
+                  height="80"
                   className="max-h-full max-w-full object-contain"
                 />
               </div>

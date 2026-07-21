@@ -2,24 +2,78 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+      Critical inline styles:
+      Paint the background colour and set the base font stack *before* any
+      external stylesheet arrives. This eliminates the white/flash-of-unstyled-content
+      that causes CLS and a poor LCP baseline on slow connections.
+    -->
+    <style>
+      :root { color-scheme: dark; }
+      html, body {
+        background-color: #050b16;
+        color: #f5f7fa;
+        font-family: Inter, system-ui, -apple-system, sans-serif;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      #root { min-height: 100dvh; }
+    </style>
+
+    <!-- ── Favicons ─────────────────────────────────────────────────────── -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png" />
     <link rel="apple-touch-icon" href="/assets/brand/favicon-180.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ── Meta ─────────────────────────────────────────────────────────── -->
     <meta
       name="description"
       content="Nfinity Partner — Tirupur's #1 Profit-Focused D2C Marketing Agency. Profit First. Revenue Second. ROAS Third."
     />
+    <meta name="theme-color" content="#050B16" />
+    <meta name="color-scheme" content="dark" />
     <meta name="google-site-verification" content="2UsUd6cY0DPKF5IWPWIXTrvBx2zTdLGTN_Q_PgcKLr8" />
     <title>Nfinity Partner — Scaling Profitability Is The Game.</title>
+
+    <!-- ── DNS + connection warm-up ─────────────────────────────────────── -->
+    <!--
+      preconnect opens the TLS+TCP handshake to Google Fonts early so the
+      font CSS (loaded below) arrives faster.  dns-prefetch is the fallback
+      for browsers that don't support preconnect.
+    -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+    <!--
+      Non-blocking font loading:
+      `media="print"` makes the browser treat this as a non-render-blocking
+      resource. The `onload` handler switches it to `media="all"` once the
+      CSS has been downloaded, applying the fonts without delaying first paint.
+      The <noscript> fallback handles the rare case where JS is disabled.
+
+      font-display=swap is embedded in the URL so text remains visible in the
+      system fallback font during the font swap period (avoids invisible text).
+    -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&display=swap"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&display=swap"
+      />
+    </noscript>
   </head>
-  <body class="bg-navy-950 text-white-100 font-body antialiased">
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

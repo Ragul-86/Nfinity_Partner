@@ -21,8 +21,11 @@ function PartnerCard({ logo }) {
         <img
           src={logo.src}
           alt={logo.alt}
-          loading="lazy"
+          loading="eager"
+          fetchpriority="low"
           decoding="async"
+          width="150"
+          height="40"
           className="max-h-[40px] max-w-[150px] w-auto object-contain"
         />
       </div>

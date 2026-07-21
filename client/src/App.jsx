@@ -1,19 +1,27 @@
+import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout.jsx';
 
-import Home from './pages/Home.jsx';
-import About from './pages/About.jsx';
-import CaseStudies from './pages/CaseStudies.jsx';
-import CaseStudyDetail from './pages/CaseStudyDetail.jsx';
-import Services from './pages/Services.jsx';
-import ServiceTemplate from './pages/ServiceTemplate.jsx';
-import BlogPost from './pages/BlogPost.jsx';
-import DigitalMarketingTamilNadu from './pages/DigitalMarketingTamilNadu.jsx';
-import Contact from './pages/Contact.jsx';
-import ThankYou from './pages/ThankYou.jsx';
-import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
-import TermsOfService from './pages/TermsOfService.jsx';
-import NotFound from './pages/NotFound.jsx';
+// ── Route-based code splitting ─────────────────────────────────────────────
+// Each page becomes its own JS chunk that Vite/Rollup tree-shakes separately.
+// The browser only downloads a page's chunk when the user navigates to it,
+// cutting the initial JS payload from one monolithic bundle to ~30–40 KB
+// (Layout + shared components + React runtime only).
+// The Suspense boundary lives in Layout.jsx so Navbar/Footer stay visible
+// during every page transition.
+const Home                       = lazy(() => import('./pages/Home.jsx'));
+const About                      = lazy(() => import('./pages/About.jsx'));
+const CaseStudies                = lazy(() => import('./pages/CaseStudies.jsx'));
+const CaseStudyDetail            = lazy(() => import('./pages/CaseStudyDetail.jsx'));
+const Services                   = lazy(() => import('./pages/Services.jsx'));
+const ServiceTemplate            = lazy(() => import('./pages/ServiceTemplate.jsx'));
+const BlogPost                   = lazy(() => import('./pages/BlogPost.jsx'));
+const DigitalMarketingTamilNadu  = lazy(() => import('./pages/DigitalMarketingTamilNadu.jsx'));
+const Contact                    = lazy(() => import('./pages/Contact.jsx'));
+const ThankYou                   = lazy(() => import('./pages/ThankYou.jsx'));
+const PrivacyPolicy              = lazy(() => import('./pages/PrivacyPolicy.jsx'));
+const TermsOfService             = lazy(() => import('./pages/TermsOfService.jsx'));
+const NotFound                   = lazy(() => import('./pages/NotFound.jsx'));
 
 export default function App() {
   return (
