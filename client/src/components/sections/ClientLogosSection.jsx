@@ -2,13 +2,16 @@ import { Button } from '../ui/Button.jsx';
 
 /**
  * "Trusted Growth Partners" — premium two-column client showcase.
- * Left: logo grid (3/row desktop). Right: title + description + CTA, vertically
- * centered against the grid. Stacks on mobile with logos first, content second.
- * { title, subtitle, logos: [{ src, alt }], cta: { label, href } }
+ * Left: logo grid (3/row desktop). Right: eyebrow + title + description + CTA,
+ * vertically centered against the grid. Stacks on mobile with logos first, content second.
+ * { eyebrow, title, subtitle, logos: [{ src, alt }], cta: { label, href } }
  */
-export function ClientLogosSection({ title, subtitle, logos = [], cta }) {
+export function ClientLogosSection({ eyebrow, title, subtitle, logos = [], cta }) {
   return (
-    <section className="border-b border-glass-border bg-navy-950">
+    <section
+      aria-label="Brands served by Nfinity Partner, Digital Marketing Agency in Tiruppur"
+      className="border-b border-glass-border bg-navy-950"
+    >
       <div className="mx-auto max-w-[1400px] px-6 py-12 lg:px-8 lg:py-20">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Logo grid */}
@@ -31,6 +34,11 @@ export function ClientLogosSection({ title, subtitle, logos = [], cta }) {
 
           {/* Content */}
           <div className="text-left">
+            {eyebrow && (
+              <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-cyan-glow-400">
+                {eyebrow}
+              </p>
+            )}
             <h2 className="font-display text-4xl font-extrabold tracking-tight text-white-100 sm:text-5xl">
               {title}
             </h2>

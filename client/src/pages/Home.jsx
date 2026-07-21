@@ -28,7 +28,7 @@ const APPROACH_STEPS = [
   { heading: 'Scaling', body: 'Increase profit, not just spend.' },
 ];
 
-const FOUNDER_STORY = `Suganya Swaminathan built Nfinity Partner around one belief: revenue means nothing if profitability doesn't grow with it. Every account is founder-reviewed — not handed to a junior media buyer.`;
+const FOUNDER_STORY = `Suganya Swaminathan built Nfinity Partner — a Digital Marketing Agency in Tiruppur — around one belief: revenue means nothing if profitability doesn't grow with it. Every account is founder-reviewed — not handed to a junior media buyer.`;
 
 const PLATFORM_LOGOS = [
   { src: '/assets/partners/shopify-mark.png', alt: 'Shopify' },
@@ -96,8 +96,9 @@ export default function Home() {
       />
 
       <ClientLogosSection
-        title="Trusted Growth Partners"
-        subtitle="₹50Cr+ in client revenue generated across fashion, retail, education, and B2B brands."
+        eyebrow="Trusted by Businesses Across Tiruppur"
+        title="Digital Marketing Agency in Tiruppur Trusted by Leading Brands"
+        subtitle="Nfinity Partner is a Digital Marketing Agency in Tiruppur helping D2C brands, manufacturers, retailers, startups, educational institutions, and local businesses grow through performance marketing, branding, website development, SEO, and digital growth strategies."
         logos={CLIENT_LOGOS}
         cta={{ label: 'Book Your Free Profit Audit', href: '/contact' }}
       />
@@ -203,6 +204,9 @@ export default function Home() {
       {/* Founder Section */}
       <div>
         <div className="mx-auto max-w-3xl px-6 pt-8 text-center lg:px-8">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-cyan-glow-400">
+            Founder &bull; Digital Marketing Agency in Tiruppur
+          </p>
           <h2 className="font-display text-3xl font-bold text-white-100 sm:text-4xl">
             Led By A Founder Who's Been On The Other Side Of The Table.
           </h2>

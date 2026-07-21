@@ -14,7 +14,7 @@ export function FounderSection({ story }) {
             <div className="absolute inset-0 -z-10 rounded-full bg-cyan-glow-400/30 blur-xl" aria-hidden="true" />
             <img
               src={FOUNDER.avatar}
-              alt={FOUNDER.name}
+              alt="Suganya Swaminathan - Founder of Nfinity Partner, Digital Marketing Agency in Tiruppur"
               loading="lazy"
               decoding="async"
               className="h-32 w-32 rounded-full border border-[rgba(77,235,255,0.3)] object-cover shadow-[0_0_30px_rgba(77,235,255,0.35)]"
