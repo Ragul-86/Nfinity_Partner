@@ -2,16 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  plugins: [
-    react({
-      // Babel plugins – keep fast-refresh in dev while removing prop-types in prod.
-      babel: {
-        plugins: process.env.NODE_ENV === 'production'
-          ? [['babel-plugin-transform-react-remove-prop-types', { removeImport: true }]]
-          : [],
-      },
-    }),
-  ],
+  plugins: [react()],
 
   build: {
     // Target modern browsers shipped since 2017 – smaller output without IE polyfills.
