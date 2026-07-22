@@ -15,20 +15,27 @@ function setMeta(name, content, attr = 'name') {
 
 /**
  * Lightweight, dependency-free stand-in for react-helmet-async. Sets
- * document title + meta description/OG tags on mount. Since this is a CSR
- * SPA (no build-time prerendering in this MVP phase), these tags update
- * after JS executes — fine for browsers/social previews that run JS, a
- * known limitation for raw crawlers until a prerender step is added later.
+ * document title + meta description/OG tags on mount.
+ *
+ * Usage A — automatic site-name suffix:
+ *   useSEO({ title: 'Page Name', description: '...' })
+ *   → document.title = "Page Name | Nfinity Partner"
+ *
+ * Usage B — exact title override (no suffix appended):
+ *   useSEO({ fullTitle: 'Exact Title Here', description: '...' })
+ *   → document.title = "Exact Title Here"
+ *
+ * `fullTitle` takes precedence over `title` when both are supplied.
  */
-export function useSEO({ title, description }) {
+export function useSEO({ title, fullTitle, description }) {
   useEffect(() => {
-    const fullTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
-    document.title = fullTitle;
+    const resolvedTitle = fullTitle || (title ? `${title} | ${SITE_NAME}` : SITE_NAME);
+    document.title = resolvedTitle;
 
     setMeta('description', description);
-    setMeta('og:title', fullTitle, 'property');
+    setMeta('og:title', resolvedTitle, 'property');
     setMeta('og:description', description, 'property');
-    setMeta('twitter:title', fullTitle);
+    setMeta('twitter:title', resolvedTitle);
     setMeta('twitter:description', description);
-  }, [title, description]);
+  }, [title, fullTitle, description]);
 }

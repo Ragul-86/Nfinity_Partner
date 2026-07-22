@@ -48,9 +48,9 @@ function validateForm(form) {
 
 export default function Contact() {
   useSEO({
-    title: 'Contact Nfinity Partner | Book Your Free Growth Strategy Call',
+    fullTitle: 'Contact Nfinity Partner | Tiruppur',
     description:
-      'Book a free growth strategy call with Nfinity Partner — Tirupur\'s profit-focused D2C growth agency. Reviewed personally by the founder, usually within 24 hours.',
+      'Contact Nfinity Partner for SEO, Google Ads, website development, branding, software development, and digital marketing solutions in Tiruppur.',
   });
 
   const navigate = useNavigate();

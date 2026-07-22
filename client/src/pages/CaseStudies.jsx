@@ -30,9 +30,9 @@ const FAQ_ITEMS = [
 
 export default function CaseStudies() {
   useSEO({
-    title: 'Case Studies | Nfinity Partner — ₹50Cr+ Revenue Generated for D2C Brands',
+    title: 'Case Studies',
     description:
-      'See how Nfinity Partner scaled D2C, fashion, education, and B2B brands profitably — including an 18X peak return and a 39X ad campaign. Real numbers, no vanity metrics.',
+      'See how Nfinity Partner helped businesses achieve higher rankings, quality leads, website traffic, revenue growth, and profitable marketing results.',
   });
 
   const { data: caseStudies, loading, error } = useFetch(() => apiClient.get('/case-studies', { limit: 50 }), []);

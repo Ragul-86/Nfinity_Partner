@@ -53,9 +53,9 @@ const CLIENT_LOGOS = [
 
 export default function Home() {
   useSEO({
-    title: "Tirupur's #1 Profit-Focused D2C Marketing Agency",
+    title: 'Digital Marketing Agency in Tiruppur',
     description:
-      'Nfinity Partner helps D2C and ecommerce brands scale profitably through performance marketing, CRO, and retention systems. ₹50Cr+ revenue generated. Book a free profit audit.',
+      'Grow your business with Nfinity Partner, a leading digital marketing agency in Tiruppur offering SEO, Google Ads, website development, social media marketing, branding, and performance marketing.',
   });
 
   const { data: services, loading: servicesLoading, error: servicesError } = useFetch(

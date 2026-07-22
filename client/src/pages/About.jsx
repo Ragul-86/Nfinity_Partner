@@ -30,9 +30,9 @@ export default function About() {
   const [avatarError, setAvatarError] = useState(false);
 
   useSEO({
-    title: 'About Nfinity Partner | Founder-Led, Profit-First D2C Growth Agency',
+    fullTitle: 'About Nfinity Partner | Digital Marketing',
     description:
-      'Meet the founder behind Nfinity Partner and the profit-first philosophy driving ₹50Cr+ in client revenue. Founder-led execution, no junior hand-offs.',
+      'Learn about Nfinity Partner, our mission, founder, experience, and commitment to helping businesses grow through measurable digital marketing strategies.',
   });
 
   return (
