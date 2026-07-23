@@ -153,9 +153,9 @@ const FAQ_ITEMS = [
 
 export default function DigitalMarketingTamilNadu() {
   useSEO({
-    title: 'Digital Marketing Agency in Tamil Nadu | Nfinity Partner — Tiruppur',
+    title: 'Digital Marketing Agency in Tamil Nadu',
     description:
-      'Nfinity Partner is a profit-first digital marketing agency in Tamil Nadu, headquartered in Tiruppur. We help D2C brands, ecommerce businesses, startups, SMEs, and local businesses across Chennai, Coimbatore, Madurai, and beyond scale profitably.',
+      'Nfinity Partner offers SEO, Google Ads, social media marketing, website development, branding, software development, and performance marketing services across Tamil Nadu to help businesses grow profitably.',
   });
 
   const { data: caseStudies, loading: csLoading, error: csError } = useFetch(
