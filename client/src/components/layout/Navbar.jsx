@@ -50,7 +50,7 @@ export function Navbar() {
                   Services <ChevronDown size={14} />
                 </button>
                 {servicesOpen && (
-                  <div className="absolute left-1/2 top-full w-64 -translate-x-1/2 pt-3">
+                  <div className="absolute left-1/2 top-full w-72 -translate-x-1/2 pt-3">
                     <div className="rounded-2xl border border-glass-border bg-navy-900/95 backdrop-blur-xl p-2 shadow-glow-lg">
                       <Link
                         to="/services"
@@ -59,7 +59,31 @@ export function Navbar() {
                         All Services
                       </Link>
                       <div className="my-1 border-t border-glass-border" />
-                      {SERVICES_NAV.map((s) => (
+
+                      {/* Primary service — Performance Marketing */}
+                      <Link
+                        to="/services/performance-marketing"
+                        className="group flex items-start gap-3 rounded-xl border border-electric-blue-500/20 bg-electric-blue-500/5 px-4 py-3 shadow-[0_0_12px_rgba(99,130,255,0.08)] transition-all duration-200 hover:border-electric-blue-500/40 hover:bg-electric-blue-500/10 hover:shadow-[0_0_18px_rgba(99,130,255,0.15)]"
+                      >
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm font-semibold text-white-100 group-hover:text-cyan-glow-400 transition-colors duration-200">
+                              Performance Marketing
+                            </span>
+                            <span className="shrink-0 rounded-full bg-cyan-glow-400/12 px-2 py-0.5 text-[10px] font-medium tracking-wide text-cyan-glow-400 ring-1 ring-cyan-glow-400/20">
+                              Featured
+                            </span>
+                          </div>
+                          <p className="mt-0.5 text-[11px] leading-relaxed text-slate-500 group-hover:text-slate-400 transition-colors duration-200">
+                            Profitable Meta
+                          </p>
+                        </div>
+                      </Link>
+
+                      <div className="my-1 border-t border-glass-border" />
+
+                      {/* Secondary services */}
+                      {SERVICES_NAV.filter((s) => s.slug !== 'performance-marketing').map((s) => (
                         <Link
                           key={s.slug}
                           to={`/services/${s.slug}`}
@@ -113,7 +137,20 @@ export function Navbar() {
                   <Link to="/services" className="flex min-h-[44px] items-center pl-4 text-white-100 hover:text-cyan-glow-400">
                     All Services
                   </Link>
-                  {SERVICES_NAV.map((s) => (
+
+                  {/* Primary service — Performance Marketing */}
+                  <Link
+                    to="/services/performance-marketing"
+                    className="flex min-h-[44px] items-center gap-2 pl-4 text-sm font-semibold text-white-100 hover:text-cyan-glow-400"
+                  >
+                    Performance Marketing
+                    <span className="rounded-full bg-cyan-glow-400/12 px-2 py-0.5 text-[10px] font-medium tracking-wide text-cyan-glow-400 ring-1 ring-cyan-glow-400/20">
+                      Featured
+                    </span>
+                  </Link>
+
+                  {/* Secondary services */}
+                  {SERVICES_NAV.filter((s) => s.slug !== 'performance-marketing').map((s) => (
                     <Link key={s.slug} to={`/services/${s.slug}`} className="flex min-h-[44px] items-center pl-4 text-sm text-white-100 hover:text-cyan-glow-400">
                       {s.name}
                     </Link>
