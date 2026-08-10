@@ -1,4 +1,7 @@
 import * as Icons from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
+import { X } from 'lucide-react';
 import { useSEO } from '../hooks/useSEO.js';
 import { useFetch } from '../hooks/useFetch.js';
 import { useScrollReveal } from '../hooks/useScrollReveal.js';
@@ -12,6 +15,94 @@ import { FAQSection } from '../components/sections/FAQSection.jsx';
 import { CTASection } from '../components/sections/CTASection.jsx';
 import { GlassCard } from '../components/ui/GlassCard.jsx';
 import { Button } from '../components/ui/Button.jsx';
+
+/* ─── Tamil Nadu page – Sticky CTA ─────────────────────────────────────────────
+ * Scoped exclusively to this page. Uses a distinct session key so dismissal
+ * is independent of the Home page StickyCTA. Never rendered globally.
+ * ────────────────────────────────────────────────────────────────────────────── */
+
+const TN_SCROLL_THRESHOLD = 300;
+const TN_SESSION_KEY      = 'nfinity_sticky_cta_tn_dismissed';
+
+function TamilNaduStickyCTA() {
+  const [dismissed, setDismissed] = useState(
+    () => sessionStorage.getItem(TN_SESSION_KEY) === '1'
+  );
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (dismissed) return;
+    const onScroll = () => setVisible(window.scrollY > TN_SCROLL_THRESHOLD);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // handle restored scroll position on back-navigation
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [dismissed]);
+
+  const handleDismiss = useCallback(() => {
+    setDismissed(true);
+    sessionStorage.setItem(TN_SESSION_KEY, '1');
+  }, []);
+
+  if (dismissed) return null;
+
+  return (
+    <div
+      aria-hidden={!visible}
+      style={{
+        position:      'fixed',
+        bottom:        '1.5rem',
+        left:          '50%',
+        /* Mobile: 16px side margins each side = 32px total */
+        width:         'calc(100% - 2rem)',
+        /* Desktop: ~700px — within the 650–750px target range */
+        maxWidth:      '44rem',
+        transform:     `translateX(-50%) translateY(${visible ? '0px' : '24px'})`,
+        opacity:        visible ? 1 : 0,
+        pointerEvents:  visible ? 'auto' : 'none',
+        transition:    'transform 420ms cubic-bezier(0.22,1,0.36,1), opacity 360ms ease',
+        zIndex:         40,
+      }}
+      className="rounded-2xl border border-[rgba(77,235,255,0.22)] bg-[rgba(8,16,34,0.93)] shadow-[0_8px_40px_rgba(0,0,0,0.45),0_0_28px_rgba(63,224,224,0.10)] backdrop-blur-xl"
+    >
+      <div className="relative flex flex-col gap-3 px-5 py-4 pr-12 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-7 sm:pr-16">
+
+        {/* Text */}
+        <div className="min-w-0">
+          <p className="font-display font-bold leading-snug text-white-100 text-[15px] sm:text-[17px]">
+            Ready to Scale Your Business?
+          </p>
+          <p className="mt-0.5 text-sm leading-snug text-slate-400">
+            Let's Build Your Growth Strategy
+          </p>
+        </div>
+
+        {/* CTA button — routes to the existing contact page */}
+        <Link
+          to="/contact"
+          tabIndex={visible ? 0 : -1}
+          className="flex-shrink-0 inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold text-navy-950 transition-all duration-200 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow-400"
+          style={{
+            background: 'linear-gradient(90deg, #2F6FFF 0%, #3FE0E0 100%)',
+            boxShadow:  '0 0 18px rgba(63,224,224,0.20)',
+          }}
+        >
+          Book A Free Strategy Call →
+        </Link>
+
+        {/* Dismiss button */}
+        <button
+          onClick={handleDismiss}
+          tabIndex={visible ? 0 : -1}
+          aria-label="Dismiss"
+          className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-white/[0.07] hover:text-white-100 focus:outline-none focus-visible:ring-1 focus-visible:ring-cyan-glow-400"
+        >
+          <X size={13} strokeWidth={2.5} />
+        </button>
+
+      </div>
+    </div>
+  );
+}
 
 /* ─── Data ─────────────────────────────────────────────────────────────────── */
 
@@ -351,6 +442,9 @@ export default function DigitalMarketingTamilNadu() {
         body="Book a free strategy call. We'll review your current marketing, identify where profit is leaking, and share a clear plan for sustainable growth — no pressure, no obligation."
         cta={{ label: 'Book Your Free Growth Strategy Call', href: '/contact' }}
       />
+
+      {/* Sticky CTA — only on this page, not global */}
+      <TamilNaduStickyCTA />
     </>
   );
 }
