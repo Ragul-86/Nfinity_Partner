@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useSEO } from '../hooks/useSEO.js';
 import { useFetch } from '../hooks/useFetch.js';
 import { useScrollReveal } from '../hooks/useScrollReveal.js';
@@ -6,7 +7,6 @@ import { STATS } from '../lib/constants.js';
 import { JsonLd, organizationSchema } from '../components/shared/JsonLd.jsx';
 import { LoadingState, ErrorState, EmptyState } from '../components/shared/PageState.jsx';
 
-import { SectionHero } from '../components/sections/SectionHero.jsx';
 import { ClientLogosSection } from '../components/sections/ClientLogosSection.jsx';
 import { StatsSection } from '../components/sections/StatsSection.jsx';
 import { ServicesGrid } from '../components/sections/ServicesGrid.jsx';
@@ -20,6 +20,7 @@ import { AwardsSection } from '../components/sections/AwardsSection.jsx';
 import { CTASection } from '../components/sections/CTASection.jsx';
 import { Badge } from '../components/ui/Badge.jsx';
 import { Button } from '../components/ui/Button.jsx';
+import { StickyCTA } from '../components/ui/StickyCTA.jsx';
 
 const APPROACH_STEPS = [
   { heading: 'Strategy', body: 'Identify growth opportunities.' },
@@ -35,6 +36,191 @@ const PLATFORM_LOGOS = [
   { src: '/assets/partners/meta-mark.png', alt: 'Meta' },
   { src: '/assets/partners/gokwik-mark.png', alt: 'GoKwik' },
 ];
+
+const AWARD_IMAGES = [
+  {
+    src: '/assets/awards/img1.jpeg',
+    alt: 'Nfinity Partner team receiving the Eagle Resilience Award on stage at TN Digital Summit 2026',
+  },
+  {
+    src: '/assets/awards/img2.jpeg',
+    alt: 'Nfinity Partner founder receiving the Eagle Resilience Award at TN Digital Summit 2026',
+  },
+  {
+    src: '/assets/awards/img3.png',
+    alt: 'Nfinity Partner team celebrating with Eagle Resilience Award trophies at TN Digital Summit 2026',
+  },
+];
+
+function AwardCarousel() {
+  const [idx, setIdx]       = useState(0);
+  const [dimmed, setDimmed] = useState(false);
+  const [loaded, setLoaded] = useState([false, false, false]);
+  const idxRef              = useRef(0);
+  const pendingRef          = useRef(null);
+  const imgRefs             = useRef([]);
+  const HALF                = 220; // ms per half of the overlay transition
+
+  const markLoaded = useCallback((i) => {
+    setLoaded(prev => {
+      if (prev[i]) return prev;
+      const next = [...prev]; next[i] = true; return next;
+    });
+  }, []);
+
+  /**
+   * handleImageReady — called from onLoad (bytes received) and the cached-image check.
+   *
+   * onLoad fires when all bytes arrive, but for progressive JPEGs decoded with
+   * decoding="async" the final pixel pass may still be running on a background
+   * thread. img.decode() returns a Promise that resolves ONLY when the image is
+   * completely decoded and ready for GPU texture upload at native quality.
+   * Gating markLoaded on decode completion is what prevents the blurry first-scan
+   * from ever being painted when the carousel switches to a slide.
+   */
+  const handleImageReady = useCallback((i) => {
+    const el = imgRefs.current[i];
+    if (!el) { markLoaded(i); return; }
+    if (typeof el.decode === 'function') {
+      el.decode()
+        .then(() => markLoaded(i))
+        .catch(() => markLoaded(i)); // fallback: show even if decode API fails
+    } else {
+      markLoaded(i); // fallback for legacy browsers
+    }
+  }, [markLoaded]);
+
+  /**
+   * goTo — "fade-through-dark" transition.
+   *
+   * The overlay (a sibling div OUTSIDE the image container's stacking context)
+   * fades in to hide the frame, the index swaps while hidden, then the overlay
+   * fades out to reveal the next image already at full opacity:1.
+   *
+   * Crucially, the <img> elements themselves are NEVER at a fractional opacity.
+   * They switch between 0 and 1 with transition:'none'. This keeps them on the
+   * CPU raster path and prevents GPU compositor promotion during the switch.
+   */
+  const goTo = (next) => {
+    if (next === idxRef.current) return;
+    clearTimeout(pendingRef.current);
+    setDimmed(true);
+    pendingRef.current = setTimeout(() => {
+      idxRef.current = next;
+      setIdx(next);
+      setDimmed(false);
+    }, HALF);
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const next = (idxRef.current + 1) % AWARD_IMAGES.length;
+      goTo(next);
+    }, 4500);
+    return () => { clearInterval(timer); clearTimeout(pendingRef.current); };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Cached images: onLoad never fires for them, so check synchronously on mount.
+  useEffect(() => {
+    imgRefs.current.forEach((el, i) => {
+      if (el && el.complete && el.naturalWidth > 0) handleImageReady(i);
+    });
+  }, [handleImageReady]);
+
+  return (
+    <div>
+      {/*
+       * Frame wrapper — position:relative so the overlay can be positioned
+       * as a sibling to the frame, NOT a child of it.
+       *
+       * WHY THIS MATTERS: the carousel frame has overflow:hidden + border-radius,
+       * which creates a new stacking context. Any element with a CSS opacity
+       * transition INSIDE that context causes Chrome to promote ALL siblings to
+       * GPU compositor layers — including the images — which can capture JPEG
+       * textures at an intermediate decode quality (= blur).
+       *
+       * By placing the overlay OUTSIDE the frame's stacking context (as a sibling
+       * in this wrapper), its animation is isolated. The images inside the frame
+       * remain on the CPU raster path and paint at full native quality.
+       */}
+      <div style={{ position: 'relative' }}>
+        {/* ── Carousel frame — images only, zero animation inside ── */}
+        {/*
+         * contain:'layout paint style' isolates this frame from the rest of the
+         * section's compositor tree. This prevents the glow element's GPU layer
+         * (blur-[120px] outside) and the overlay's opacity animation (sibling here)
+         * from causing Chrome to re-promote the images inside to GPU compositor
+         * layers during the transition — which is what caused the blurry JPEG render.
+         */}
+        <div
+          className="relative w-full overflow-hidden rounded-2xl border border-electric-blue-500/30 bg-navy-900 shadow-[0_0_48px_rgba(63,224,224,0.12)]"
+          style={{ aspectRatio: '4 / 3', contain: 'layout paint style' }}
+        >
+          {AWARD_IMAGES.map((img, i) => (
+            <img
+              key={img.src}
+              ref={el => { imgRefs.current[i] = el; }}
+              src={img.src}
+              alt={img.alt}
+              loading="eager"
+              decoding="async"
+              onLoad={() => handleImageReady(i)}
+              onError={() => markLoaded(i)}
+              style={{
+                position:       'absolute',
+                inset:           0,
+                width:          '100%',
+                height:         '100%',
+                objectFit:      'cover',
+                objectPosition: 'center',
+                opacity:        (i === idx && loaded[i]) ? 1 : 0,
+                transition:     'none', // never animate image opacity
+              }}
+            />
+          ))}
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-navy-950/60 to-transparent"
+            aria-hidden="true"
+            style={{ zIndex: 1 }}
+          />
+        </div>
+
+        {/* ── Transition overlay — sibling to the frame, not inside it ── */}
+        <div
+          aria-hidden="true"
+          style={{
+            position:      'absolute',
+            inset:          0,
+            borderRadius:  '1rem',   // matches rounded-2xl (Tailwind 3 = 16px = 1rem)
+            background:    '#0A1428', // navy-900
+            opacity:       dimmed ? 1 : 0,
+            transition:    `opacity ${HALF}ms ease-in-out`,
+            zIndex:         1,
+            pointerEvents: 'none',
+          }}
+        />
+      </div>
+
+      {/* Pagination dots */}
+      <div className="mt-4 flex items-center justify-center gap-2" role="tablist" aria-label="Award images">
+        {AWARD_IMAGES.map((_, i) => (
+          <button
+            key={i}
+            role="tab"
+            aria-selected={i === idx}
+            aria-label={`Show image ${i + 1}`}
+            onClick={() => goTo(i)}
+            className={`rounded-full transition-all duration-300 focus:outline-none ${
+              i === idx
+                ? 'h-1.5 w-6 bg-cyan-glow-400'
+                : 'h-1.5 w-1.5 bg-white/25 hover:bg-white/50'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 const CLIENT_LOGOS = [
   { src: '/assets/logos/58961872_477753086097998_8361855451872100352_n.png', alt: 'Fortune Innovatives' },
@@ -78,22 +264,90 @@ export default function Home() {
     <>
       <JsonLd id="home-org" data={organizationSchema()} />
 
-      <SectionHero
-        eyebrow="Tirupur's #1 Profit-Focused D2C Marketing Agency"
-        positioningStatement="Profit First → Revenue Second → ROAS Third"
-        headline="Scaling Profitability Is The Game."
-        subheadline="We help D2C brands increase profit, revenue, and customer lifetime value through performance marketing, CRO, and growth strategy."
-        primaryCta={{ label: 'Book Your Free Profit Audit', href: '/contact' }}
-        secondaryCta={{ label: 'See Our Case Studies', href: '/case-studies' }}
-        eyebrowClassName="border border-[#4DEBFF] bg-[rgba(77,235,255,0.08)] px-5 py-2 text-[21px] font-bold tracking-[0.08em] text-[#4DEBFF] shadow-[0_0_24px_rgba(77,235,255,0.3)]"
-        positioningStatementClassName="mt-6 text-[24px] font-semibold tracking-wide text-[#4DEBFF]"
-        containerClassName="max-w-4xl lg:max-w-[1750px]"
-        wrapperMaxWidthClassName="max-w-7xl lg:max-w-[1750px]"
-        headlineSizeClassName="text-4xl sm:text-5xl lg:text-[clamp(42px,4.3vw,78px)]"
-        headlineClassName="mt-5"
-        subheadlineClassName="mt-8"
-        partnerLogos={PLATFORM_LOGOS}
-      />
+      {/* ── Two-column Hero ─────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-gradient-black">
+        {/* Ambient glow — matches SectionHero */}
+        <div
+          className="pointer-events-none absolute left-1/2 top-0 h-[480px] w-[800px] -translate-x-1/2 rounded-full bg-electric-blue-500/20 blur-[120px]"
+          aria-hidden="true"
+        />
+
+        <div className="relative mx-auto max-w-7xl px-6 pt-10 pb-10 sm:pt-14 sm:pb-12 lg:px-8 lg:pt-20 lg:pb-16">
+
+          <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16">
+
+            {/* ── LEFT — existing hero content ─────────────────────────────── */}
+            <div className="flex-1 min-w-0">
+
+              {/* Eyebrow badge — lg:text-[13px]/px-3 keeps it on one line inside the left column */}
+              <span className="inline-flex items-center gap-1.5 rounded-full uppercase border border-[#4DEBFF] bg-[rgba(77,235,255,0.08)] px-5 py-2 lg:px-3 text-[15px] sm:text-[21px] lg:text-[13px] lg:whitespace-nowrap font-bold tracking-[0.08em] text-[#4DEBFF] shadow-[0_0_24px_rgba(77,235,255,0.3)]">
+                Tirupur's #1 Profit-Focused D2C Marketing Agency
+              </span>
+
+              {/* Positioning statement */}
+              <p className="mt-6 text-[20px] sm:text-[24px] font-semibold tracking-wide text-[#4DEBFF]">
+                Profit First → Revenue Second → ROAS Third
+              </p>
+
+              {/* Headline */}
+              <h1 className="mt-5 font-display font-extrabold tracking-tight text-white-100 text-4xl sm:text-5xl lg:text-[clamp(42px,4.3vw,72px)]">
+                Scaling Profitability Is The Game.
+              </h1>
+
+              {/* Subheadline */}
+              <p className="mt-8 max-w-xl text-lg text-slate-400">
+                We help D2C brands increase profit, revenue, and customer lifetime value through performance marketing, CRO, and growth strategy.
+              </p>
+
+              {/* CTAs */}
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <Button href="/contact" size="lg" withArrow>
+                  Book Your Free Profit Audit
+                </Button>
+                <Button href="/case-studies" variant="secondary" size="lg">
+                  See Our Case Studies
+                </Button>
+              </div>
+
+            </div>
+
+            {/* ── RIGHT — award image carousel ─────────────────────────────── */}
+            <div className="w-full lg:w-[46%] lg:shrink-0">
+              <AwardCarousel />
+            </div>
+
+          </div>
+
+          {/* Partner logo cards — compact group, centered via mx-auto */}
+          <div className="mt-[60px] flex flex-col items-center gap-4 sm:flex-row sm:w-fit sm:mx-auto sm:gap-[18px]">
+            {PLATFORM_LOGOS.map((logo) => (
+              <div
+                key={logo.src}
+                className="flex h-[110px] w-full sm:w-[185px] sm:shrink-0 flex-col items-center justify-center rounded-[20px] border border-[rgba(77,235,255,0.25)] bg-glass-fill px-4 shadow-[0_0_24px_rgba(77,235,255,0.18)] backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-[5px] hover:shadow-[0_0_36px_rgba(77,235,255,0.32)]"
+              >
+                <div className="flex h-[40px] w-full items-center justify-center">
+                  <img
+                    src={logo.src}
+                    alt={logo.alt}
+                    loading="eager"
+                    fetchpriority="low"
+                    decoding="async"
+                    width="150"
+                    height="40"
+                    className="max-h-[40px] max-w-[150px] w-auto object-contain"
+                  />
+                </div>
+                <p
+                  className="text-center font-medium"
+                  style={{ fontSize: '14px', color: 'rgba(255,255,255,0.75)', letterSpacing: '0.5px', marginTop: '12px' }}
+                >
+                  {logo.alt} Partner
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <ClientLogosSection
         eyebrow="Trusted by Businesses Across Tiruppur"
@@ -240,6 +494,9 @@ export default function Home() {
       <p className="-mt-16 pb-16 text-center text-xs text-slate-400">
         Reviewed personally by the founder. Usually responds within 24 hours.
       </p>
+
+      {/* Scroll-triggered sticky CTA — Home page only, never in global layout */}
+      <StickyCTA />
     </>
   );
 }
