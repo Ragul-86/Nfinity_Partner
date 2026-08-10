@@ -229,7 +229,7 @@ const CLIENT_LOGOS = [
   { src: '/assets/logos/397284943_1086403345709987_4084707428464138765_n.png', alt: 'Client partner logo' },
   { src: '/assets/logos/473028016_1819839445437007_79829896382429459_n.png', alt: 'GK Naturals' },
   { src: '/assets/logos/491150893_24187371780852920_7792074825305866171_n.png', alt: 'Thugiil For Women' },
-  { src: '/assets/logos/627165636_18052555652694983_5073613427572677048_n.png', alt: 'Eyal' },
+  { src: '/assets/logos/627165636_18052555652694983_5073613427572677048_m.png', alt: 'Eyal' },
   { src: '/assets/logos/274678130_295213222713075_6688730258676888690_n.png', alt: "Deepa's Boutique" },
   { src: '/assets/logos/we_2_b13f0ef2-b671-4241-9cd2-4c4a3eea8463_200x_2x.png', alt: 'Temple - The Designer Studio' },
   { src: '/assets/logos/658173288_17962831866069238_3547545128342012201_n.png', alt: 'Ritarya' },
