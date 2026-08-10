@@ -55,53 +55,30 @@ const AWARD_IMAGES = [
 function AwardCarousel() {
   const [idx, setIdx]       = useState(0);
   const [dimmed, setDimmed] = useState(false);
-  const [loaded, setLoaded] = useState([false, false, false]);
+  const [ready, setReady]   = useState(false);
   const idxRef              = useRef(0);
   const pendingRef          = useRef(null);
-  const imgRefs             = useRef([]);
-  const HALF                = 220; // ms per half of the overlay transition
+  const HALF                = 220; // ms — overlay fade half-duration
 
-  const markLoaded = useCallback((i) => {
-    setLoaded(prev => {
-      if (prev[i]) return prev;
-      const next = [...prev]; next[i] = true; return next;
-    });
+  // Preload and fully decode all images before the carousel starts.
+  // new Image() + decode() fills the browser's decoded image cache so that
+  // every subsequent src swap on the single <img> paints immediately at
+  // native pixel quality — no progressive-JPEG first-scan, no blur.
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all(
+      AWARD_IMAGES.map(({ src }) => {
+        const img = new Image();
+        img.src = src;
+        return typeof img.decode === 'function'
+          ? img.decode().catch(() => {})
+          : new Promise((res) => { img.onload = res; img.onerror = res; });
+      })
+    ).then(() => { if (!cancelled) setReady(true); });
+    return () => { cancelled = true; };
   }, []);
 
-  /**
-   * handleImageReady — called from onLoad (bytes received) and the cached-image check.
-   *
-   * onLoad fires when all bytes arrive, but for progressive JPEGs decoded with
-   * decoding="async" the final pixel pass may still be running on a background
-   * thread. img.decode() returns a Promise that resolves ONLY when the image is
-   * completely decoded and ready for GPU texture upload at native quality.
-   * Gating markLoaded on decode completion is what prevents the blurry first-scan
-   * from ever being painted when the carousel switches to a slide.
-   */
-  const handleImageReady = useCallback((i) => {
-    const el = imgRefs.current[i];
-    if (!el) { markLoaded(i); return; }
-    if (typeof el.decode === 'function') {
-      el.decode()
-        .then(() => markLoaded(i))
-        .catch(() => markLoaded(i)); // fallback: show even if decode API fails
-    } else {
-      markLoaded(i); // fallback for legacy browsers
-    }
-  }, [markLoaded]);
-
-  /**
-   * goTo — "fade-through-dark" transition.
-   *
-   * The overlay (a sibling div OUTSIDE the image container's stacking context)
-   * fades in to hide the frame, the index swaps while hidden, then the overlay
-   * fades out to reveal the next image already at full opacity:1.
-   *
-   * Crucially, the <img> elements themselves are NEVER at a fractional opacity.
-   * They switch between 0 and 1 with transition:'none'. This keeps them on the
-   * CPU raster path and prevents GPU compositor promotion during the switch.
-   */
-  const goTo = (next) => {
+  const goTo = useCallback((next) => {
     if (next === idxRef.current) return;
     clearTimeout(pendingRef.current);
     setDimmed(true);
@@ -110,74 +87,40 @@ function AwardCarousel() {
       setIdx(next);
       setDimmed(false);
     }, HALF);
-  };
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const next = (idxRef.current + 1) % AWARD_IMAGES.length;
-      goTo(next);
-    }, 4500);
-    return () => { clearInterval(timer); clearTimeout(pendingRef.current); };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Cached images: onLoad never fires for them, so check synchronously on mount.
+  // Auto-slide starts only after all images are fully decoded and cached.
   useEffect(() => {
-    imgRefs.current.forEach((el, i) => {
-      if (el && el.complete && el.naturalWidth > 0) handleImageReady(i);
-    });
-  }, [handleImageReady]);
+    if (!ready) return;
+    const timer = setInterval(() => {
+      goTo((idxRef.current + 1) % AWARD_IMAGES.length);
+    }, 4500);
+    return () => { clearInterval(timer); clearTimeout(pendingRef.current); };
+  }, [ready, goTo]);
 
   return (
     <div>
-      {/*
-       * Frame wrapper — position:relative so the overlay can be positioned
-       * as a sibling to the frame, NOT a child of it.
-       *
-       * WHY THIS MATTERS: the carousel frame has overflow:hidden + border-radius,
-       * which creates a new stacking context. Any element with a CSS opacity
-       * transition INSIDE that context causes Chrome to promote ALL siblings to
-       * GPU compositor layers — including the images — which can capture JPEG
-       * textures at an intermediate decode quality (= blur).
-       *
-       * By placing the overlay OUTSIDE the frame's stacking context (as a sibling
-       * in this wrapper), its animation is isolated. The images inside the frame
-       * remain on the CPU raster path and paint at full native quality.
-       */}
       <div style={{ position: 'relative' }}>
-        {/* ── Carousel frame — images only, zero animation inside ── */}
-        {/*
-         * contain:'layout paint style' isolates this frame from the rest of the
-         * section's compositor tree. This prevents the glow element's GPU layer
-         * (blur-[120px] outside) and the overlay's opacity animation (sibling here)
-         * from causing Chrome to re-promote the images inside to GPU compositor
-         * layers during the transition — which is what caused the blurry JPEG render.
-         */}
+        {/* Carousel frame — aspect ratio matches About page (720/470 ≈ natural 3:2 ratio
+            of the award photos). object-contain preserves the full composition without
+            cropping; will-change:transform promotes to its own compositor layer so
+            Chrome rasterises at display resolution after full decode. */}
         <div
           className="relative w-full overflow-hidden rounded-2xl border border-electric-blue-500/30 bg-navy-900 shadow-[0_0_48px_rgba(63,224,224,0.12)]"
-          style={{ aspectRatio: '4 / 3', contain: 'layout paint style' }}
+          style={{ aspectRatio: '720 / 470', willChange: 'transform' }}
         >
-          {AWARD_IMAGES.map((img, i) => (
-            <img
-              key={img.src}
-              ref={el => { imgRefs.current[i] = el; }}
-              src={img.src}
-              alt={img.alt}
-              loading="eager"
-              decoding="async"
-              onLoad={() => handleImageReady(i)}
-              onError={() => markLoaded(i)}
-              style={{
-                position:       'absolute',
-                inset:           0,
-                width:          '100%',
-                height:         '100%',
-                objectFit:      'cover',
-                objectPosition: 'center',
-                opacity:        (i === idx && loaded[i]) ? 1 : 0,
-                transition:     'none', // never animate image opacity
-              }}
-            />
-          ))}
+          <img
+            src={AWARD_IMAGES[idx].src}
+            alt={AWARD_IMAGES[idx].alt}
+            style={{
+              position:  'absolute',
+              inset:      0,
+              width:     '100%',
+              height:    '100%',
+              objectFit: 'contain',
+              display:   'block',
+            }}
+          />
           <div
             className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-navy-950/60 to-transparent"
             aria-hidden="true"
@@ -185,14 +128,14 @@ function AwardCarousel() {
           />
         </div>
 
-        {/* ── Transition overlay — sibling to the frame, not inside it ── */}
+        {/* Overlay — outside the frame's stacking context, handles visual fade */}
         <div
           aria-hidden="true"
           style={{
             position:      'absolute',
             inset:          0,
-            borderRadius:  '1rem',   // matches rounded-2xl (Tailwind 3 = 16px = 1rem)
-            background:    '#0A1428', // navy-900
+            borderRadius:  '1rem',
+            background:    '#0A1428',
             opacity:       dimmed ? 1 : 0,
             transition:    `opacity ${HALF}ms ease-in-out`,
             zIndex:         1,
