@@ -27,7 +27,7 @@ export const CONTACT = {
 export const FOUNDER = {
   name: 'Suganya Swaminathan',
   role: 'Founder & CEO',
-  award: 'Eagle Resilience Award — TN Digital Summit 2026',
+  award: 'Eagle Resilience Award - TN Digital Summit 2026',
   avatar: '/assets/team/founder-suganya.png',
 };
 
@@ -63,7 +63,7 @@ export const BOTTLENECK_OPTIONS = [
   { value: 'conversion', label: 'Turning traffic into sales (conversion)' },
   { value: 'retention', label: 'Getting customers to buy again (retention)' },
   { value: 'tracking', label: "I can't tell what's actually working (tracking)" },
-  { value: 'not_sure', label: "Not sure — that's what I want to find out" },
+  { value: 'not_sure', label: "Not sure - that's what I want to find out" },
 ];
 
 export const COMPANY_VALUES = [
@@ -77,10 +77,10 @@ export const COMPANY_VALUES = [
   },
   {
     title: 'Radically Transparent',
-    description: 'No vanity metrics, no locked-in contracts disguised as "partnership" — just honest reporting.',
+    description: 'No vanity metrics, no locked-in contracts disguised as "partnership" - just honest reporting.',
   },
   {
     title: 'Systems Over Guesswork',
-    description: 'A repeatable framework — Meta Ads → Creatives → Offers → CRO → Retention → Profitability → Scaling — beats one-off tactics.',
+    description: 'A repeatable framework - Meta Ads → Creatives → Offers → CRO → Retention → Profitability → Scaling - beats one-off tactics.',
   },
 ];

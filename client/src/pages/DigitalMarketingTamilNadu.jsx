@@ -54,7 +54,7 @@ function TamilNaduStickyCTA() {
         left:          '50%',
         /* Mobile: 16px side margins each side = 32px total */
         width:         'calc(100% - 2rem)',
-        /* Desktop: ~700px — within the 650–750px target range */
+        /* Desktop: ~700px - within the 650–750px target range */
         maxWidth:      '44rem',
         transform:     `translateX(-50%) translateY(${visible ? '0px' : '24px'})`,
         opacity:        visible ? 1 : 0,
@@ -76,7 +76,7 @@ function TamilNaduStickyCTA() {
           </p>
         </div>
 
-        {/* CTA button — routes to the existing contact page */}
+        {/* CTA button - routes to the existing contact page */}
         <Link
           to="/contact"
           tabIndex={visible ? 0 : -1}
@@ -111,13 +111,13 @@ const SERVICES = [
     name: 'Performance Marketing',
     slug: 'performance-marketing',
     icon: 'TrendingUp',
-    desc: 'Profitable Meta Ads and Google Ads campaigns built around your margins. Every rupee of ad spend is tracked against real business outcomes — not just impressions.',
+    desc: 'Profitable Meta Ads and Google Ads campaigns built around your margins. Every rupee of ad spend is tracked against real business outcomes - not just impressions.',
   },
   {
     name: 'Website Development',
     slug: 'website-development',
     icon: 'Globe',
-    desc: 'High-performance websites and landing pages designed to convert visitors into leads — fast, mobile-first, and engineered to rank on search.',
+    desc: 'High-performance websites and landing pages designed to convert visitors into leads - fast, mobile-first, and engineered to rank on search.',
   },
   {
     name: 'SEO',
@@ -159,7 +159,7 @@ const SERVICES = [
     name: 'LinkedIn Automation',
     slug: 'linkedin-automation',
     icon: 'Linkedin',
-    desc: 'Strategic LinkedIn outreach systems for B2B businesses building relationships and generating a consistent sales pipeline — on autopilot.',
+    desc: 'Strategic LinkedIn outreach systems for B2B businesses building relationships and generating a consistent sales pipeline - on autopilot.',
   },
 ];
 
@@ -167,7 +167,7 @@ const WHY_ITEMS = [
   {
     icon: 'TrendingUp',
     title: 'Profit-First Approach',
-    desc: 'Every strategy begins by understanding your margins. We optimise for contribution margin, ROAS, and CAC — never just for reach or impressions.',
+    desc: 'Every strategy begins by understanding your margins. We optimise for contribution margin, ROAS, and CAC - never just for reach or impressions.',
   },
   {
     icon: 'UserCheck',
@@ -177,7 +177,7 @@ const WHY_ITEMS = [
   {
     icon: 'Layers',
     title: 'Full-Funnel Thinking',
-    desc: 'From awareness to purchase to retention — we build systems that compound. Each investment makes the next one more effective.',
+    desc: 'From awareness to purchase to retention - we build systems that compound. Each investment makes the next one more effective.',
   },
   {
     icon: 'MapPin',
@@ -203,7 +203,7 @@ const PROCESS_STEPS = [
     number: '03',
     icon: 'Zap',
     title: 'Execute',
-    desc: 'We deploy campaigns, creatives, and systems — moving fast while staying precise on the metrics that actually move the business.',
+    desc: 'We deploy campaigns, creatives, and systems - moving fast while staying precise on the metrics that actually move the business.',
   },
   {
     number: '04',
@@ -220,23 +220,23 @@ const FAQ_ITEMS = [
   },
   {
     q: 'What types of businesses does Nfinity Partner work with?',
-    a: 'We work with D2C brands, ecommerce businesses, startups, SMEs, manufacturers, educational institutions, healthcare businesses, and local businesses across Tamil Nadu — at every stage of their growth.',
+    a: 'We work with D2C brands, ecommerce businesses, startups, SMEs, manufacturers, educational institutions, healthcare businesses, and local businesses across Tamil Nadu - at every stage of their growth.',
   },
   {
     q: 'What makes Nfinity Partner different from other digital marketing agencies in Tamil Nadu?',
-    a: 'Our profit-first approach means we optimise for real business outcomes — contribution margin, customer acquisition cost, and customer lifetime value — rather than vanity metrics like impressions, reach, and follower counts.',
+    a: 'Our profit-first approach means we optimise for real business outcomes - contribution margin, customer acquisition cost, and customer lifetime value - rather than vanity metrics like impressions, reach, and follower counts.',
   },
   {
     q: 'Can Nfinity Partner handle both paid advertising and organic growth?',
-    a: 'Yes. We manage performance marketing (Meta Ads, Google Ads), SEO, social media marketing, and content — building a balanced growth system that reduces dependence on any single channel.',
+    a: 'Yes. We manage performance marketing (Meta Ads, Google Ads), SEO, social media marketing, and content - building a balanced growth system that reduces dependence on any single channel.',
   },
   {
     q: 'Do you offer website development and software services alongside marketing?',
-    a: 'Yes. We offer website development, mobile app development, and custom software — all built to support and accelerate your marketing outcomes.',
+    a: 'Yes. We offer website development, mobile app development, and custom software - all built to support and accelerate your marketing outcomes.',
   },
   {
     q: 'How do I get started with Nfinity Partner?',
-    a: 'Book a free strategy call through our website. We will review your current marketing, identify where profit is leaking, and share a clear plan for sustainable growth — no pressure, no obligation.',
+    a: 'Book a free strategy call through our website. We will review your current marketing, identify where profit is leaking, and share a clear plan for sustainable growth - no pressure, no obligation.',
   },
 ];
 
@@ -285,7 +285,7 @@ export default function DigitalMarketingTamilNadu() {
           <p className="text-sm font-semibold uppercase tracking-widest text-cyan-glow-400">What We Do</p>
           <h2 className="mt-3 font-display text-3xl font-bold text-white-100 sm:text-4xl">Our Services.</h2>
           <p className="mt-4 text-slate-400">
-            End-to-end digital marketing, branding, and technology — everything a growing business in Tamil Nadu
+            End-to-end digital marketing, branding, and technology - everything a growing business in Tamil Nadu
             needs, under one roof.
           </p>
         </div>
@@ -340,7 +340,7 @@ export default function DigitalMarketingTamilNadu() {
               Why Choose Nfinity Partner.
             </h2>
             <p className="mt-4 text-slate-400">
-              Most agencies chase metrics. We chase profitability — because that's the only number that tells you
+              Most agencies chase metrics. We chase profitability - because that's the only number that tells you
               whether your business is actually growing.
             </p>
           </div>
@@ -391,7 +391,7 @@ export default function DigitalMarketingTamilNadu() {
                 style={{ transitionDelay: `${i * 0.12}s` }}
               >
                 <GlassCard className="flex h-full flex-col p-6 transition-all duration-300 hover:-translate-y-1 hover:border-electric-blue-400/50 hover:shadow-glow-lg">
-                  {/* Large step number — decorative */}
+                  {/* Large step number - decorative */}
                   <span className="font-display text-[3.5rem] font-extrabold leading-none text-gradient-accent opacity-15 transition-opacity duration-300 group-hover:opacity-30">
                     {step.number}
                   </span>
@@ -439,11 +439,11 @@ export default function DigitalMarketingTamilNadu() {
       {/* ── FINAL CTA ──────────────────────────────────────────────────────── */}
       <CTASection
         headline="Ready to Grow Your Business Profitably?"
-        body="Book a free strategy call. We'll review your current marketing, identify where profit is leaking, and share a clear plan for sustainable growth — no pressure, no obligation."
+        body="Book a free strategy call. We'll review your current marketing, identify where profit is leaking, and share a clear plan for sustainable growth - no pressure, no obligation."
         cta={{ label: 'Book Your Free Growth Strategy Call', href: '/contact' }}
       />
 
-      {/* Sticky CTA — only on this page, not global */}
+      {/* Sticky CTA - only on this page, not global */}
       <TamilNaduStickyCTA />
     </>
   );

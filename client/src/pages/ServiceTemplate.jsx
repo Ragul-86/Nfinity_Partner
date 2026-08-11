@@ -111,7 +111,7 @@ export default function ServiceTemplate() {
 
       <FrameworkSteps sections={service.sections} />
 
-      <FAQSection title={`${service.name} — FAQs`} items={service.faqs} />
+      <FAQSection title={`${service.name} - FAQs`} items={service.faqs} />
 
       <CTASection
         headline={service.finalCtaHeadline || `Ready To Scale With ${service.name}?`}

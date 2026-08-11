@@ -29,7 +29,7 @@ const APPROACH_STEPS = [
   { heading: 'Scaling', body: 'Increase profit, not just spend.' },
 ];
 
-const FOUNDER_STORY = `Suganya Swaminathan built Nfinity Partner — a Digital Marketing Agency in Tiruppur — around one belief: revenue means nothing if profitability doesn't grow with it. Every account is founder-reviewed — not handed to a junior media buyer.`;
+const FOUNDER_STORY = `Suganya Swaminathan built Nfinity Partner - a Digital Marketing Agency in Tiruppur - around one belief: revenue means nothing if profitability doesn't grow with it. Every account is founder-reviewed - not handed to a junior media buyer.`;
 
 const PLATFORM_LOGOS = [
   { src: '/assets/partners/shopify-mark.png', alt: 'Shopify' },
@@ -432,7 +432,7 @@ export default function Home() {
       {/* Final CTA */}
       <CTASection
         headline="Ready To Earn An Extra ₹2L+ In Revenue With The Same Ad Spend?"
-        body="Book a free strategy call now — no pressure, just a clear look at where your profit is leaking."
+        body="Book a free strategy call now - no pressure, just a clear look at where your profit is leaking."
         cta={{ label: 'Book Your Free Profit Audit', href: '/contact' }}
       />
       <p className="-mt-16 pb-16 text-center text-xs text-slate-400">

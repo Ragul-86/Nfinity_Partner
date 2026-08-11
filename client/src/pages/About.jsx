@@ -18,7 +18,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'What industries does Nfinity Partner specialize in?',
-    a: 'D2C and ecommerce brands are the core focus — fashion, retail, education, and select B2B/service brands running LinkedIn outreach.',
+    a: 'D2C and ecommerce brands are the core focus - fashion, retail, education, and select B2B/service brands running LinkedIn outreach.',
   },
   {
     q: 'Why "profit first" instead of the usual growth metrics?',
@@ -44,7 +44,7 @@ export default function About() {
         eyebrow="ABOUT NFINITY PARTNER"
         eyebrowClassName="border border-glass-border bg-glass-fill px-3 py-1 text-sm leading-[2rem] font-medium tracking-wide text-cyan-glow-400 sm:text-[1.5rem]"
         headline="Every Business Has A Story. So Does Nfinity."
-        subheadline="Nfinity Partner was built on resilience, continuous learning, and a simple belief that businesses deserve growth built on profitability—not just marketing metrics."
+        subheadline="Nfinity Partner was built on resilience, continuous learning, and a simple belief that businesses deserve growth built on profitability-not just marketing metrics."
         primaryCta={{ label: 'Book A Free Strategy Call', href: '/contact' }}
       />
 
@@ -54,7 +54,7 @@ export default function About() {
         <div className="mt-6 space-y-5 text-slate-400">
           <p>
             Nfinity Partner was built on a simple belief: businesses deserve more than campaign
-            management—they deserve a growth partner.
+            management-they deserve a growth partner.
           </p>
           <p>
             After working with founders across different industries, we realized that many businesses weren't
@@ -97,7 +97,7 @@ export default function About() {
         <div className="mt-6 space-y-5 text-slate-400">
           <p>
             Like many women, my career took a pause after becoming a mother of two. During that phase, I wasn't
-            looking to build an agency—I was simply looking for an opportunity to rebuild my career.
+            looking to build an agency-I was simply looking for an opportunity to rebuild my career.
           </p>
           <p>
             When I entered digital marketing during the COVID period, I started with almost no technical knowledge.
@@ -118,7 +118,7 @@ export default function About() {
           </p>
           <p>
             That pattern couldn't be ignored. Instead of becoming another agency focused only on advertising, she
-            built Nfinity Partner to solve the real business problem—creating profitable, scalable growth through
+            built Nfinity Partner to solve the real business problem-creating profitable, scalable growth through
             strategy, execution, and continuous optimization.
           </p>
           <p>
@@ -184,7 +184,7 @@ export default function About() {
               aria-hidden="true"
             />
             <p className="mt-4 text-slate-400">
-              To become India's most trusted profit-first growth partner for ambitious D2C and ecommerce brands —
+              To become India's most trusted profit-first growth partner for ambitious D2C and ecommerce brands -
               proving that scaling responsibly and scaling fast aren't opposites.
             </p>
           </GlassCard>
@@ -202,7 +202,7 @@ export default function About() {
         <AwardsSection
           awards={[
             {
-              name: 'Eagle Resilience Award — TN Digital Summit 2026',
+              name: 'Eagle Resilience Award - TN Digital Summit 2026',
               body: 'Recognized for consistent effort, performance excellence, and contribution to digital growth.',
             },
           ]}

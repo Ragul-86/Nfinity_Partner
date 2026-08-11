@@ -14,7 +14,7 @@ import { FAQSection } from '../components/sections/FAQSection.jsx';
 const FAQ_ITEMS = [
   {
     q: "What's the minimum ad spend to work with you?",
-    a: "We're transparent on this during the strategy call — we'd rather tell you honestly if it's not the right fit yet than take budget that won't move the needle.",
+    a: "We're transparent on this during the strategy call - we'd rather tell you honestly if it's not the right fit yet than take budget that won't move the needle.",
   },
   {
     q: 'How fast will I hear back?',
@@ -130,7 +130,7 @@ export default function Contact() {
             Let's Find Out Where Your Profit Is Leaking.
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-slate-400">
-            Book a free strategy call — no pressure, just a clear look at your numbers. Reviewed personally by the
+            Book a free strategy call - no pressure, just a clear look at your numbers. Reviewed personally by the
             founder, usually within 24 hours.
           </p>
         </div>

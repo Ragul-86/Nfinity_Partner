@@ -2,7 +2,7 @@ import { useSEO } from '../hooks/useSEO.js';
 import { Button } from '../components/ui/Button.jsx';
 
 export default function NotFound() {
-  useSEO({ title: '404 — Page Not Found', description: 'This page could not be found.' });
+  useSEO({ title: '404 - Page Not Found', description: 'This page could not be found.' });
 
   return (
     <section className="mx-auto flex min-h-[60vh] max-w-xl flex-col items-center justify-center px-6 py-24 text-center lg:px-8">

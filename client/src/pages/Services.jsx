@@ -12,7 +12,7 @@ export default function Services() {
   useSEO({
     title: 'Services | Performance Marketing, SEO, Branding & More',
     description:
-      'End-to-end growth systems for D2C and ecommerce brands — performance marketing, website development, SEO, social media marketing, branding, and software development.',
+      'End-to-end growth systems for D2C and ecommerce brands - performance marketing, website development, SEO, social media marketing, branding, and software development.',
   });
 
   const { data: services, loading, error } = useFetch(() => apiClient.get('/services'), []);
@@ -25,7 +25,7 @@ export default function Services() {
         eyebrow="What We Do"
         eyebrowClassName="border border-glass-border bg-glass-fill px-3 py-1 text-[1.5rem] leading-[2rem] font-medium tracking-wide text-cyan-glow-400"
         headline="End-To-End Growth Systems, Not One-Off Tactics."
-        subheadline="Strategy, media buying, websites, branding, and software under one roof — every service measured against the same number: profit."
+        subheadline="Strategy, media buying, websites, branding, and software under one roof - every service measured against the same number: profit."
         primaryCta={{ label: 'Book A Free Strategy Call', href: '/contact' }}
       />
 
@@ -40,7 +40,7 @@ export default function Services() {
 
       <CTASection
         headline="Not Sure Which Service You Need?"
-        body="Book a free strategy call — we'll tell you honestly where your funnel is leaking profit."
+        body="Book a free strategy call - we'll tell you honestly where your funnel is leaking profit."
         cta={{ label: 'Book Your Free Profit Audit', href: '/contact' }}
       />
     </>

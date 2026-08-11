@@ -16,7 +16,7 @@ export default function ThankYou() {
       </div>
       <h1 className="mt-6 font-display text-3xl font-bold text-white-100 sm:text-4xl">You're In.</h1>
       <p className="mt-4 text-slate-400">
-        Thanks for reaching out — your submission has been sent straight to the founder. Expect a response within
+        Thanks for reaching out - your submission has been sent straight to the founder. Expect a response within
         24 hours.
       </p>
       <p className="mt-2 text-sm text-slate-400">

@@ -60,7 +60,7 @@ export default function Blog() {
         eyebrow="The Blog"
         eyebrowClassName="border border-glass-border bg-glass-fill px-3 py-1 text-[1.5rem] leading-[2rem] font-medium tracking-wide text-cyan-glow-400"
         headline="Profit-First Growth Insights."
-        subheadline="Practical breakdowns on performance marketing, CRO, retention, and the systems that actually move profit — not just traffic."
+        subheadline="Practical breakdowns on performance marketing, CRO, retention, and the systems that actually move profit - not just traffic."
         size="md"
       />
 
@@ -151,7 +151,7 @@ export default function Blog() {
             <GlassCard className="p-6 text-center">
               <h3 className="font-display font-semibold text-white-100">Enjoying These Insights?</h3>
               <p className="mt-2 text-sm text-slate-400">
-                Book a free profit audit and put them into action — reviewed personally by the founder.
+                Book a free profit audit and put them into action - reviewed personally by the founder.
               </p>
               <Button href="/contact" className="mt-5 w-full" withArrow>
                 Book Your Free Profit Audit

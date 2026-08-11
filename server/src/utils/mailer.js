@@ -24,7 +24,7 @@ const BOTTLENECK_LABELS = {
   conversion:  'Turning traffic into sales (conversion)',
   retention:   'Getting customers to buy again (retention)',
   tracking:    "Can't tell what's actually working (tracking)",
-  not_sure:    "Not sure — that's what I want to find out",
+  not_sure:    "Not sure - that's what I want to find out",
 };
 
 /* ─── HTML email builder ─────────────────────────────────────────────────── */
@@ -39,7 +39,7 @@ function buildLeadEmailHtml(lead, submittedAt) {
       </td>
       <td style="padding:10px 16px;background:#ffffff;border-bottom:1px solid #e9ecef;
                  color:#212529;font-family:Arial,sans-serif;font-size:14px;">
-        ${value || '—'}
+        ${value || '-'}
       </td>
     </tr>`;
 
@@ -78,7 +78,7 @@ function buildLeadEmailHtml(lead, submittedAt) {
               ${row('📞 Phone Number',           lead.phone)}
               ${row('📧 Email Address',          lead.email)}
               ${row('💰 Monthly Revenue',        REVENUE_LABELS[lead.revenueRange] || lead.revenueRange)}
-              ${row('🎯 Biggest Growth Challenge', lead.message || (BOTTLENECK_LABELS[lead.bottleneck] || lead.bottleneck) || '—')}
+              ${row('🎯 Biggest Growth Challenge', lead.message || (BOTTLENECK_LABELS[lead.bottleneck] || lead.bottleneck) || '-')}
               ${row('🔗 Source Page',            lead.sourcePage || 'Direct')}
             </table>
 

@@ -5,7 +5,7 @@
 
 export const caseStudies = [
   {
-    title: 'Fashion Brand — Maternity Wear: 18X Peak Return',
+    title: 'Fashion Brand - Maternity Wear: 18X Peak Return',
     slug: 'fashion-maternity-wear',
     clientName: 'Fashion Brand',
     industry: 'Fashion',
@@ -24,7 +24,7 @@ export const caseStudies = [
     isFeatured: true,
     order: 1,
     seo: {
-      title: 'Fashion Brand Case Study — 18X Peak ROAS | Nfinity Partner',
+      title: 'Fashion Brand Case Study - 18X Peak ROAS | Nfinity Partner',
       description:
         'How Nfinity Partner took a maternity-wear fashion brand to an 18X peak return on ad spend through structured creative testing.',
     },
@@ -48,7 +48,7 @@ export const caseStudies = [
     isFeatured: true,
     order: 3,
     seo: {
-      title: 'CCTV & Networking Case Study — ₹1Cr+ in 3 Months | Nfinity Partner',
+      title: 'CCTV & Networking Case Study - ₹1Cr+ in 3 Months | Nfinity Partner',
       description:
         'How Nfinity Partner built a lead-qualification-driven Meta advertising system that generated ₹1Cr+ in revenue in 3 months.',
     },
@@ -70,7 +70,7 @@ export const caseStudies = [
     isFeatured: true,
     order: 2,
     seo: {
-      title: 'Educational Institute Case Study — ₹2Cr+ in 6 Months | Nfinity Partner',
+      title: 'Educational Institute Case Study - ₹2Cr+ in 6 Months | Nfinity Partner',
       description:
         'How a profit-first acquisition framework generated ₹2Cr+ in revenue for an educational institute in 6 months.',
     },
@@ -85,7 +85,7 @@ export const services = [
     shortDescription: 'Data-driven Meta advertising systems designed to acquire customers profitably.',
     heroHeadline: 'The Meta Ads Framework Behind ₹50Cr+ In Client Revenue.',
     heroSubheadline:
-      "We build Meta advertising systems designed to acquire customers profitably — not just generate impressive-looking ROAS.",
+      "We build Meta advertising systems designed to acquire customers profitably - not just generate impressive-looking ROAS.",
     sections: [
       {
         order: 1,
@@ -97,13 +97,13 @@ export const services = [
         order: 2,
         heading: 'Meta Ads Framework',
         body:
-          'Our system: Meta Ads → Creatives → Offers → CRO → Retention → Profitability → Scaling. Every stage feeds the next — creative testing informs offer positioning, offer positioning informs conversion rate, and only profitable, validated campaigns get scaled.',
+          'Our system: Meta Ads → Creatives → Offers → CRO → Retention → Profitability → Scaling. Every stage feeds the next - creative testing informs offer positioning, offer positioning informs conversion rate, and only profitable, validated campaigns get scaled.',
       },
       {
         order: 3,
         heading: 'Creative Testing',
         body:
-          "Structured testing cycles across hooks, angles, and formats — not random creative refreshes. We've used this exact process to take accounts from inconsistent returns to 18X and 39X peak campaigns.",
+          "Structured testing cycles across hooks, angles, and formats - not random creative refreshes. We've used this exact process to take accounts from inconsistent returns to 18X and 39X peak campaigns.",
       },
       {
         order: 4,
@@ -114,7 +114,7 @@ export const services = [
         order: 5,
         heading: 'Offer Positioning',
         body:
-          "Sometimes the fastest profit lift isn't a better ad — it's a better offer. We test offer structure as rigorously as we test creative.",
+          "Sometimes the fastest profit lift isn't a better ad - it's a better offer. We test offer structure as rigorously as we test creative.",
       },
       {
         order: 6,
@@ -135,11 +135,11 @@ export const services = [
       },
       {
         q: 'How do you decide what to scale?',
-        a: 'Only campaigns that are profitable against contribution margin get more budget — ROAS alone never triggers a scale decision.',
+        a: 'Only campaigns that are profitable against contribution margin get more budget - ROAS alone never triggers a scale decision.',
       },
       {
         q: "Do you work with brands that haven't run ads before?",
-        a: 'Yes — we build the acquisition system from the ground up, including offer and creative testing.',
+        a: 'Yes - we build the acquisition system from the ground up, including offer and creative testing.',
       },
       {
         q: 'What do you need from us to get started?',
@@ -150,7 +150,7 @@ export const services = [
     finalCtaBody: 'Get a free, no-pressure teardown of your current Meta Ads account.',
     order: 1,
     seo: {
-      title: 'Performance Marketing | Profit-First Meta Ads — Nfinity Partner',
+      title: 'Performance Marketing | Profit-First Meta Ads - Nfinity Partner',
       description:
         'Meta Ads systems built around contribution margin, not vanity ROAS. 18X and 39X campaign results for D2C brands. Get a free account teardown.',
     },
@@ -168,7 +168,7 @@ export const services = [
         order: 1,
         heading: 'Why Websites Fail',
         body:
-          "Most underperforming websites aren't ugly — they're slow, unclear, and built without conversion logic. We diagnose load speed, message clarity, and funnel friction before recommending a single design change.",
+          "Most underperforming websites aren't ugly - they're slow, unclear, and built without conversion logic. We diagnose load speed, message clarity, and funnel friction before recommending a single design change.",
       },
       {
         order: 2,
@@ -180,7 +180,7 @@ export const services = [
         order: 3,
         heading: 'Landing Pages',
         body:
-          'Built specifically for paid traffic — message-matched to the ad that drove the click, stripped of distractions, optimized for one conversion action.',
+          'Built specifically for paid traffic - message-matched to the ad that drove the click, stripped of distractions, optimized for one conversion action.',
       },
       {
         order: 4,
@@ -202,7 +202,7 @@ export const services = [
     faqs: [
       {
         q: 'Do you build on a specific platform?',
-        a: 'We recommend the platform based on your needs — from headless/React builds for performance-critical sites to ecommerce platforms for catalog-heavy stores.',
+        a: 'We recommend the platform based on your needs - from headless/React builds for performance-critical sites to ecommerce platforms for catalog-heavy stores.',
       },
       {
         q: 'How long does a website build take?',
@@ -214,14 +214,14 @@ export const services = [
       },
       {
         q: 'Can you redesign my existing site instead of starting from scratch?',
-        a: 'Yes — many engagements start with a CRO audit of the existing site before deciding what to rebuild vs. optimize.',
+        a: 'Yes - many engagements start with a CRO audit of the existing site before deciding what to rebuild vs. optimize.',
       },
     ],
     finalCtaHeadline: 'Find Out How Much Revenue Your Website Is Leaving On The Table.',
     finalCtaBody: 'Get a free site audit and see exactly where the friction is.',
     order: 2,
     seo: {
-      title: 'Website Development | High-Converting Websites — Nfinity Partner',
+      title: 'Website Development | High-Converting Websites - Nfinity Partner',
       description:
         'CRO-built websites and landing pages designed to turn traffic into customers. Fast, conversion-focused, built for D2C and ecommerce brands.',
     },
@@ -239,19 +239,19 @@ export const services = [
         order: 1,
         heading: 'Why Most SEO Fails',
         body:
-          "Most SEO work stalls because it chases rankings instead of revenue — targeting keywords with no buying intent, publishing content nobody searches for, or fixing technical issues with no clear link to traffic or sales.",
+          "Most SEO work stalls because it chases rankings instead of revenue - targeting keywords with no buying intent, publishing content nobody searches for, or fixing technical issues with no clear link to traffic or sales.",
       },
       {
         order: 2,
         heading: 'Technical SEO',
         body:
-          "Site speed, crawlability, indexing, and structured data fixed first — no keyword strategy outperforms a site search engines can't properly crawl or render.",
+          "Site speed, crawlability, indexing, and structured data fixed first - no keyword strategy outperforms a site search engines can't properly crawl or render.",
       },
       {
         order: 3,
         heading: 'Keyword & Intent Research',
         body:
-          'We map keywords to actual buying intent — informational, comparison, and transactional — so content is built to convert, not just rank.',
+          'We map keywords to actual buying intent - informational, comparison, and transactional - so content is built to convert, not just rank.',
       },
       {
         order: 4,
@@ -263,34 +263,34 @@ export const services = [
         order: 5,
         heading: 'Link Building & Authority',
         body:
-          'A measured approach to building domain authority through relevant, earned links — not volume-based link schemes that put your domain at risk.',
+          'A measured approach to building domain authority through relevant, earned links - not volume-based link schemes that put your domain at risk.',
       },
       {
         order: 6,
         heading: 'Reporting',
         body:
-          'Organic traffic, keyword rankings, and — most importantly — organic-driven revenue, reported alongside your paid performance so you see the full acquisition picture.',
+          'Organic traffic, keyword rankings, and - most importantly - organic-driven revenue, reported alongside your paid performance so you see the full acquisition picture.',
       },
     ],
     faqs: [
       {
         q: 'How long does SEO take to show results?',
-        a: 'Meaningful movement typically starts in 3–4 months, with compounding gains from month 6 onward — SEO is a medium-to-long-term channel by nature.',
+        a: 'Meaningful movement typically starts in 3–4 months, with compounding gains from month 6 onward - SEO is a medium-to-long-term channel by nature.',
       },
       {
         q: 'Does SEO replace paid advertising?',
-        a: 'No — it reduces your dependency on it over time by lowering blended acquisition cost; the two channels work best run together.',
+        a: 'No - it reduces your dependency on it over time by lowering blended acquisition cost; the two channels work best run together.',
       },
       {
         q: 'Do you write the content yourselves?',
-        a: 'Yes, or we work with your existing content team — either way, every piece is built around mapped keyword intent, not generic topics.',
+        a: 'Yes, or we work with your existing content team - either way, every piece is built around mapped keyword intent, not generic topics.',
       },
     ],
     finalCtaHeadline: "Find Out How Much Organic Traffic You're Leaving On The Table.",
     finalCtaBody: 'Get a free SEO audit of your current site and keyword opportunity.',
     order: 3,
     seo: {
-      title: 'SEO | Organic Growth Systems — Nfinity Partner',
+      title: 'SEO | Organic Growth Systems - Nfinity Partner',
       description:
         'SEO systems built around buying intent and technical fundamentals, designed to compound organic traffic and lower blended acquisition cost for D2C and ecommerce brands.',
     },
@@ -314,7 +314,7 @@ export const services = [
         order: 2,
         heading: 'Content Strategy',
         body:
-          "A content calendar built around what your audience actually engages with — not a generic content-pillars template copied across every brand.",
+          "A content calendar built around what your audience actually engages with - not a generic content-pillars template copied across every brand.",
       },
       {
         order: 3,
@@ -326,7 +326,7 @@ export const services = [
         order: 4,
         heading: 'Platform Strategy',
         body:
-          "The right mix of Instagram, Facebook, and emerging platforms for your audience — we don't spread you thin across every platform by default.",
+          "The right mix of Instagram, Facebook, and emerging platforms for your audience - we don't spread you thin across every platform by default.",
       },
       {
         order: 5,
@@ -338,30 +338,30 @@ export const services = [
         order: 6,
         heading: 'Reporting',
         body:
-          'Engagement, follower growth, and audience quality tracked against actual business outcomes — leads and sales — not vanity metrics alone.',
+          'Engagement, follower growth, and audience quality tracked against actual business outcomes - leads and sales - not vanity metrics alone.',
       },
     ],
     faqs: [
       {
         q: 'Do you handle both organic posting and paid social?',
-        a: 'Yes — we run them as one connected system, with paid amplifying what organic content is already proving works.',
+        a: 'Yes - we run them as one connected system, with paid amplifying what organic content is already proving works.',
       },
       {
         q: 'How many platforms will you manage for us?',
-        a: 'Whichever platforms your audience actually uses — usually 1–2 done well outperforms 5 done thinly.',
+        a: 'Whichever platforms your audience actually uses - usually 1–2 done well outperforms 5 done thinly.',
       },
       {
         q: 'Can you work alongside our existing in-house social person?',
-        a: "Yes — many engagements are strategy and systems, with content execution handled by your team or ours, depending on what's needed.",
+        a: "Yes - many engagements are strategy and systems, with content execution handled by your team or ours, depending on what's needed.",
       },
     ],
     finalCtaHeadline: 'See What A Strategic Social Presence Could Do For Your Funnel.',
     finalCtaBody: 'Get a free audit of your current social channels.',
     order: 4,
     seo: {
-      title: 'Social Media Marketing | Organic & Paid Social — Nfinity Partner',
+      title: 'Social Media Marketing | Organic & Paid Social - Nfinity Partner',
       description:
-        'Social media systems built to grow an engaged audience and feed your acquisition funnel — content strategy, community management, and paid amplification.',
+        'Social media systems built to grow an engaged audience and feed your acquisition funnel - content strategy, community management, and paid amplification.',
     },
   },
   {
@@ -377,7 +377,7 @@ export const services = [
         order: 1,
         heading: 'ICP Research',
         body:
-          'We define your ideal customer profile with precision before writing a single outreach message — the single biggest driver of response and meeting-booking rates.',
+          'We define your ideal customer profile with precision before writing a single outreach message - the single biggest driver of response and meeting-booking rates.',
       },
       {
         order: 2,
@@ -388,7 +388,7 @@ export const services = [
         order: 3,
         heading: 'Outreach Framework',
         body:
-          'ICP Research → Connection → Conversation → Meeting Booked — each stage tracked so we know exactly where the pipeline is working and where it isn’t.',
+          'ICP Research → Connection → Conversation → Meeting Booked - each stage tracked so we know exactly where the pipeline is working and where it isn’t.',
       },
       {
         order: 4,
@@ -404,7 +404,7 @@ export const services = [
     faqs: [
       {
         q: 'Is this just automated spam messaging?',
-        a: 'No — every sequence is built on ICP research first; volume without targeting is exactly what we avoid.',
+        a: 'No - every sequence is built on ICP research first; volume without targeting is exactly what we avoid.',
       },
       {
         q: 'What industries does this work best for?',
@@ -412,14 +412,14 @@ export const services = [
       },
       {
         q: 'How many meetings can I expect?',
-        a: 'Discussed transparently on the strategy call based on your ICP size and offer — we won’t promise a number we can’t back with the framework.',
+        a: 'Discussed transparently on the strategy call based on your ICP size and offer - we won’t promise a number we can’t back with the framework.',
       },
     ],
     finalCtaHeadline: "See Exactly How We'd Fill Your Calendar.",
     finalCtaBody: 'Get a free outreach audit of your current pipeline.',
     order: 9,
     seo: {
-      title: 'LinkedIn Automation | Outreach & Lead Generation — Nfinity Partner',
+      title: 'LinkedIn Automation | Outreach & Lead Generation - Nfinity Partner',
       description:
         'ICP-driven LinkedIn outreach systems built to generate consistent conversations and booked meetings, not vanity connections.',
     },
@@ -429,7 +429,7 @@ export const services = [
     slug: 'personal-branding-product-photography',
     icon: 'Camera',
     shortDescription: 'Founder personal branding and product photography built to build trust before a customer ever clicks "buy."',
-    heroHeadline: 'People Buy From People — And From Photos That Look Worth Buying.',
+    heroHeadline: 'People Buy From People - And From Photos That Look Worth Buying.',
     heroSubheadline:
       'Personal branding for founders and high-quality product photography built to build trust and lift conversion before a single ad even runs.',
     sections: [
@@ -437,7 +437,7 @@ export const services = [
         order: 1,
         heading: 'Why This Matters',
         body:
-          "A founder with a visible, credible presence converts skepticism into trust faster than any ad copy can — and product photography is often the single biggest lever on a product page's conversion rate.",
+          "A founder with a visible, credible presence converts skepticism into trust faster than any ad copy can - and product photography is often the single biggest lever on a product page's conversion rate.",
       },
       {
         order: 2,
@@ -449,13 +449,13 @@ export const services = [
         order: 3,
         heading: 'Product Photography',
         body:
-          'Studio and lifestyle product photography shot specifically for ecommerce conversion — clean catalog shots paired with in-context lifestyle imagery.',
+          'Studio and lifestyle product photography shot specifically for ecommerce conversion - clean catalog shots paired with in-context lifestyle imagery.',
       },
       {
         order: 4,
         heading: 'Content Direction',
         body:
-          'Every shoot planned around how the imagery will actually be used — ads, product pages, social, and packaging — not a generic photoshoot with no funnel in mind.',
+          'Every shoot planned around how the imagery will actually be used - ads, product pages, social, and packaging - not a generic photoshoot with no funnel in mind.',
       },
       {
         order: 5,
@@ -467,22 +467,22 @@ export const services = [
     faqs: [
       {
         q: 'Do you provide the photographer/studio, or just direction?',
-        a: 'Both — we can run full shoots end-to-end, or direct your existing photography team toward conversion-focused output.',
+        a: 'Both - we can run full shoots end-to-end, or direct your existing photography team toward conversion-focused output.',
       },
       {
-        q: "I'm not comfortable on camera — can personal branding still work?",
-        a: "Yes — coaching and content formats are tailored to your comfort level; visibility doesn't have to mean constant video.",
+        q: "I'm not comfortable on camera - can personal branding still work?",
+        a: "Yes - coaching and content formats are tailored to your comfort level; visibility doesn't have to mean constant video.",
       },
       {
         q: 'How often do we need new product photography?',
-        a: 'Typically refreshed per major product launch or seasonal collection — discussed during the strategy call based on your catalog.',
+        a: 'Typically refreshed per major product launch or seasonal collection - discussed during the strategy call based on your catalog.',
       },
     ],
     finalCtaHeadline: 'See What Better Photography And A Visible Founder Could Do For Conversion.',
     finalCtaBody: 'Get a free review of your current product imagery and founder presence.',
     order: 5,
     seo: {
-      title: 'Personal Branding & Product Photography — Nfinity Partner',
+      title: 'Personal Branding & Product Photography - Nfinity Partner',
       description:
         'Founder personal branding and conversion-focused product photography built to build trust and lift conversion for D2C and ecommerce brands.',
     },
@@ -500,13 +500,13 @@ export const services = [
         order: 1,
         heading: 'Why Channels Need To Be Connected',
         body:
-          "Most brands run paid, social, email, and SEO as separate efforts with separate owners — each optimizing in isolation, sometimes working against each other for the same customer's attention.",
+          "Most brands run paid, social, email, and SEO as separate efforts with separate owners - each optimizing in isolation, sometimes working against each other for the same customer's attention.",
       },
       {
         order: 2,
         heading: 'Channel Strategy',
         body:
-          'A single strategy that decides what each channel is responsible for — awareness, conversion, or retention — instead of every channel trying to do everything.',
+          'A single strategy that decides what each channel is responsible for - awareness, conversion, or retention - instead of every channel trying to do everything.',
       },
       {
         order: 3,
@@ -536,7 +536,7 @@ export const services = [
     faqs: [
       {
         q: 'Do you replace our existing channel specialists, or work with them?',
-        a: 'Either — some clients want us running every channel directly, others want us providing the unifying strategy while specialist teams execute.',
+        a: 'Either - some clients want us running every channel directly, others want us providing the unifying strategy while specialist teams execute.',
       },
       {
         q: 'How is this different from just running performance marketing?',
@@ -544,14 +544,14 @@ export const services = [
       },
       {
         q: 'How often does the strategy get reviewed?',
-        a: 'On a regular cadence — typically monthly — since channel performance and budget allocation shift as the market and your offers do.',
+        a: 'On a regular cadence - typically monthly - since channel performance and budget allocation shift as the market and your offers do.',
       },
     ],
     finalCtaHeadline: 'Find Out If Your Channels Are Working Together Or Against Each Other.',
     finalCtaBody: 'Get a free cross-channel marketing audit.',
     order: 6,
     seo: {
-      title: 'Online Marketing | Cross-Channel Growth Strategy — Nfinity Partner',
+      title: 'Online Marketing | Cross-Channel Growth Strategy - Nfinity Partner',
       description:
         'Cross-channel digital marketing strategy connecting paid, organic, email, and content into one system measured against profit, not vanity metrics.',
     },
@@ -575,7 +575,7 @@ export const services = [
         order: 2,
         heading: 'Brand Positioning',
         body:
-          'A clear answer to why a customer should choose you specifically, not just what category you sell in — the foundation every other piece of branding builds on.',
+          'A clear answer to why a customer should choose you specifically, not just what category you sell in - the foundation every other piece of branding builds on.',
       },
       {
         order: 3,
@@ -599,11 +599,11 @@ export const services = [
     faqs: [
       {
         q: 'Do we need a full rebrand, or can you work with our existing identity?',
-        a: "Most engagements start with an audit to decide — often it's a refinement, not a full rebrand, that's actually needed.",
+        a: "Most engagements start with an audit to decide - often it's a refinement, not a full rebrand, that's actually needed.",
       },
       {
         q: 'How does branding connect to the performance marketing you run?',
-        a: "A distinct, trusted brand consistently lowers cost-per-result across every paid channel — it's not separate from performance, it's an input into it.",
+        a: "A distinct, trusted brand consistently lowers cost-per-result across every paid channel - it's not separate from performance, it's an input into it.",
       },
       {
         q: 'How long does a branding project take?',
@@ -614,7 +614,7 @@ export const services = [
     finalCtaBody: 'Get a free brand audit alongside your next strategy call.',
     order: 7,
     seo: {
-      title: 'Digital Branding | Brand Identity & Positioning — Nfinity Partner',
+      title: 'Digital Branding | Brand Identity & Positioning - Nfinity Partner',
       description:
         'Brand identity, positioning, and visual systems built to make every channel work harder for D2C and ecommerce brands.',
     },
@@ -632,7 +632,7 @@ export const services = [
         order: 1,
         heading: 'When Custom Software Makes Sense',
         body:
-          "Most businesses don't need custom software — until a specific workflow, customer experience, or integration genuinely can't be solved by an off-the-shelf tool anymore. We help you figure out which side of that line you're on before recommending a build.",
+          "Most businesses don't need custom software - until a specific workflow, customer experience, or integration genuinely can't be solved by an off-the-shelf tool anymore. We help you figure out which side of that line you're on before recommending a build.",
       },
       {
         order: 2,
@@ -656,7 +656,7 @@ export const services = [
         order: 5,
         heading: 'Development Process',
         body:
-          'Discovery & Scoping → Architecture & Design → Build & QA → Launch → Ongoing Support — the same rigor we apply to website builds, applied to software.',
+          'Discovery & Scoping → Architecture & Design → Build & QA → Launch → Ongoing Support - the same rigor we apply to website builds, applied to software.',
       },
       {
         order: 6,
@@ -668,24 +668,24 @@ export const services = [
     faqs: [
       {
         q: 'Do you build native apps, or web-based apps?',
-        a: 'Whichever fits the use case — recommended during scoping based on performance needs, budget, and target platforms.',
+        a: 'Whichever fits the use case - recommended during scoping based on performance needs, budget, and target platforms.',
       },
       {
-        q: "We're not sure if we need an app or just a better website — can you help us decide?",
-        a: 'Yes — this is usually the first conversation, before any build commitment, on the strategy call.',
+        q: "We're not sure if we need an app or just a better website - can you help us decide?",
+        a: 'Yes - this is usually the first conversation, before any build commitment, on the strategy call.',
       },
       {
         q: 'Do you provide ongoing maintenance after launch?',
-        a: 'Yes — ongoing support is discussed and scoped alongside the initial build, not treated as an afterthought.',
+        a: 'Yes - ongoing support is discussed and scoped alongside the initial build, not treated as an afterthought.',
       },
     ],
     finalCtaHeadline: 'Find Out If Custom Software Is Actually What You Need.',
     finalCtaBody: 'Get a free scoping call to figure out the right build for your business.',
     order: 8,
     seo: {
-      title: 'Software & App Development | Custom Builds — Nfinity Partner',
+      title: 'Software & App Development | Custom Builds - Nfinity Partner',
       description:
-        'Custom software and mobile app development for brands that have outgrown off-the-shelf tools — from scoping through ongoing support.',
+        'Custom software and mobile app development for brands that have outgrown off-the-shelf tools - from scoping through ongoing support.',
     },
   },
 ];
@@ -723,7 +723,7 @@ export const testimonials = [
     role: 'Administrator',
     brandName: 'Educational Institute',
     quote:
-      'We needed consistent, qualified enrollment leads in a crowded local market. The same profit-first framework Nfinity uses for D2C brands worked just as well for us — ₹2Cr+ in revenue in 6 months.',
+      'We needed consistent, qualified enrollment leads in a crowded local market. The same profit-first framework Nfinity uses for D2C brands worked just as well for us - ₹2Cr+ in revenue in 6 months.',
     isFeatured: false,
     order: 4,
   },
@@ -740,21 +740,21 @@ export const blogPosts = [
       'A behind-the-scenes look at the offer positioning and creative testing process that took a saree brand’s campaign from a 10X return to 39X.',
     content: `Most agencies would have called the first campaign a win. A 10X return on ad spend is, by most standards, a strong result. We treated it as a starting point.
 
-The brand had built real traction around a single hero product, but scaling further with the same creative and the same offer was starting to show diminishing returns — a familiar plateau for D2C brands that lean on one winning SKU for too long.
+The brand had built real traction around a single hero product, but scaling further with the same creative and the same offer was starting to show diminishing returns - a familiar plateau for D2C brands that lean on one winning SKU for too long.
 
 **The diagnosis**
 
-Before touching the media buying, we looked at two things most teams skip: offer structure and creative fatigue. The offer hadn't changed in months. The creative had been refreshed, but not tested — refreshed and tested are not the same thing.
+Before touching the media buying, we looked at two things most teams skip: offer structure and creative fatigue. The offer hadn't changed in months. The creative had been refreshed, but not tested - refreshed and tested are not the same thing.
 
 **The fix**
 
-We layered in structured offer positioning alongside a CRO pass on the landing experience, and ran creative testing in parallel rather than sequentially. Multiple angles — price-led, social-proof-led, and occasion-led — went into market at once, with budget allocated only to what was actually converting.
+We layered in structured offer positioning alongside a CRO pass on the landing experience, and ran creative testing in parallel rather than sequentially. Multiple angles - price-led, social-proof-led, and occasion-led - went into market at once, with budget allocated only to what was actually converting.
 
 **The result**
 
-The follow-up campaign reached 39X. Not because the algorithm got smarter — because the inputs feeding it did.
+The follow-up campaign reached 39X. Not because the algorithm got smarter - because the inputs feeding it did.
 
-If your best campaign ever was also your most recent plateau, the offer and the creative are usually the first place to look — not the targeting.`,
+If your best campaign ever was also your most recent plateau, the offer and the creative are usually the first place to look - not the targeting.`,
     coverImage: '',
     readTimeMinutes: 5,
     relatedService: 'performance-marketing',
@@ -782,7 +782,7 @@ ROAS measures revenue against spend. It says nothing about what it cost to fulfi
 
 **What to track instead**
 
-Contribution margin — revenue minus the variable costs of fulfilling it, including the ad spend itself — is the number that tells you whether a campaign is actually making the business healthier. It's also the number every scaling decision in our Meta Ads framework gets measured against, not ROAS alone.
+Contribution margin - revenue minus the variable costs of fulfilling it, including the ad spend itself - is the number that tells you whether a campaign is actually making the business healthier. It's also the number every scaling decision in our Meta Ads framework gets measured against, not ROAS alone.
 
 **The practical shift**
 
@@ -806,15 +806,15 @@ Pull product cost and fulfillment cost into your reporting, even roughly. Once c
       'Meta Ads → Creatives → Offers → CRO → Retention → Profitability → Scaling. Here’s how each stage feeds the next.',
     content: `Every new account starts with the same seven-stage framework, regardless of industry: Meta Ads, Creatives, Offers, CRO, Retention, Profitability, Scaling.
 
-It's not a checklist to move through once — it's a loop. Creative testing informs offer positioning. Offer positioning changes conversion rate. Conversion rate changes what's actually profitable to scale. Profitable campaigns get more budget, which generates more data, which feeds the next round of creative testing.
+It's not a checklist to move through once - it's a loop. Creative testing informs offer positioning. Offer positioning changes conversion rate. Conversion rate changes what's actually profitable to scale. Profitable campaigns get more budget, which generates more data, which feeds the next round of creative testing.
 
 **Why sequence matters**
 
-Brands often want to skip straight to "scaling" — more budget, more reach. But scaling an unprofitable or untested system just scales the leak. We run accounts through the earlier stages first, even when the founder is eager to spend more, because the data from stages one through four is what makes stage seven (scaling) safe.
+Brands often want to skip straight to "scaling" - more budget, more reach. But scaling an unprofitable or untested system just scales the leak. We run accounts through the earlier stages first, even when the founder is eager to spend more, because the data from stages one through four is what makes stage seven (scaling) safe.
 
 **What this looks like in the first 30 days**
 
-Audience and creative testing run in parallel, offer experiments get queued based on early signal, and CRO fixes on the landing experience happen alongside the ad testing — not after it. By day 30, most accounts have a clear read on what's actually working, not just what's spending.`,
+Audience and creative testing run in parallel, offer experiments get queued based on early signal, and CRO fixes on the landing experience happen alongside the ad testing - not after it. By day 30, most accounts have a clear read on what's actually working, not just what's spending.`,
     coverImage: '',
     readTimeMinutes: 4,
     relatedService: 'performance-marketing',
@@ -823,7 +823,7 @@ Audience and creative testing run in parallel, offer experiments get queued base
     seo: {
       title: 'The Meta Ads Framework We Use For Every New Client | Nfinity Partner Blog',
       description:
-        'Meta Ads → Creatives → Offers → CRO → Retention → Profitability → Scaling — the seven-stage framework behind every Nfinity Partner account.',
+        'Meta Ads → Creatives → Offers → CRO → Retention → Profitability → Scaling - the seven-stage framework behind every Nfinity Partner account.',
     },
   },
   {
@@ -836,13 +836,13 @@ Audience and creative testing run in parallel, offer experiments get queued base
 
 Here are the seven issues we find most often during a CRO audit:
 
-1. **Message mismatch** — the landing page doesn't say what the ad said, so visitors bounce immediately.
-2. **Slow load speed** — every additional second of load time compounds bounce rate, especially on mobile.
-3. **No single clear next step** — too many competing CTAs dilute the one action that actually matters.
-4. **Trust signals buried or missing** — reviews, guarantees, and credibility markers placed below the fold where doubt has already won.
-5. **Desktop-first design serving a mobile-majority audience** — most paid traffic is mobile; designing desktop-first gets the priorities backward.
-6. **Generic, brochure-style copy** — describing the product instead of addressing the specific reason the visitor clicked.
-7. **No urgency or next-step clarity at the point of decision** — visitors who are ready to act don't know what happens after they click "buy" or "submit."
+1. **Message mismatch** - the landing page doesn't say what the ad said, so visitors bounce immediately.
+2. **Slow load speed** - every additional second of load time compounds bounce rate, especially on mobile.
+3. **No single clear next step** - too many competing CTAs dilute the one action that actually matters.
+4. **Trust signals buried or missing** - reviews, guarantees, and credibility markers placed below the fold where doubt has already won.
+5. **Desktop-first design serving a mobile-majority audience** - most paid traffic is mobile; designing desktop-first gets the priorities backward.
+6. **Generic, brochure-style copy** - describing the product instead of addressing the specific reason the visitor clicked.
+7. **No urgency or next-step clarity at the point of decision** - visitors who are ready to act don't know what happens after they click "buy" or "submit."
 
 None of these require a full redesign to fix. Most are addressable within the existing site, which is usually where a CRO audit starts before any conversation about a rebuild.`,
     coverImage: '',
@@ -864,7 +864,7 @@ None of these require a full redesign to fix. Most are addressable within the ex
       'Acquisition without retention is a leaking bucket. Here’s how a retention layer makes every acquisition campaign more profitable.',
     content: `It costs significantly more to acquire a new customer than to sell to an existing one. Most D2C brands know this in theory and still under-invest in retention in practice, because acquisition is where the visible growth happens.
 
-But retention isn't a separate growth lever — it's a multiplier on the acquisition spend you're already making. A customer who buys twice instead of once effectively halves your acquisition cost on that customer's lifetime value.
+But retention isn't a separate growth lever - it's a multiplier on the acquisition spend you're already making. A customer who buys twice instead of once effectively halves your acquisition cost on that customer's lifetime value.
 
 **Where the leak usually is**
 
@@ -872,7 +872,7 @@ Most brands have a generic post-purchase email sequence and stop there. There's 
 
 **What a real retention system looks like**
 
-First Purchase → Post-Purchase Flow → Win-Back → Repeat Purchase → Loyalty, with a specific channel and automation assigned to each stage — email for some, WhatsApp for others, depending on what your customers actually respond to.
+First Purchase → Post-Purchase Flow → Win-Back → Repeat Purchase → Loyalty, with a specific channel and automation assigned to each stage - email for some, WhatsApp for others, depending on what your customers actually respond to.
 
 **The compounding effect**
 
@@ -896,19 +896,19 @@ Every acquisition campaign you run becomes more profitable once the retention la
       'Most LinkedIn outreach fails for one reason: it skips ICP research and goes straight to volume. Here’s why precision beats spray-and-pray.',
     content: `Most failed LinkedIn outreach campaigns aren't failing because of message quality. They're failing because of who the message is being sent to.
 
-Spray-and-pray outreach optimizes for connection request volume. ICP-driven outreach optimizes for fit — and fit is what actually drives response rate, conversation quality, and ultimately, booked meetings.
+Spray-and-pray outreach optimizes for connection request volume. ICP-driven outreach optimizes for fit - and fit is what actually drives response rate, conversation quality, and ultimately, booked meetings.
 
 **Defining ICP with precision**
 
-A real ideal customer profile goes beyond job title and company size. It includes the specific problem your buyer is actively trying to solve right now, the trigger events that put them in-market, and the language they use to describe their own problem — not the language your sales deck uses.
+A real ideal customer profile goes beyond job title and company size. It includes the specific problem your buyer is actively trying to solve right now, the trigger events that put them in-market, and the language they use to describe their own problem - not the language your sales deck uses.
 
 **Why this changes the outreach itself**
 
-Once the ICP is precise, the message can be specific. Generic outreach gets generic (or no) responses. A message that names the exact problem a tightly defined ICP is facing reads as relevant, not as a pitch — and relevant messages get replies.
+Once the ICP is precise, the message can be specific. Generic outreach gets generic (or no) responses. A message that names the exact problem a tightly defined ICP is facing reads as relevant, not as a pitch - and relevant messages get replies.
 
 **The framework**
 
-ICP Research → Connection → Conversation → Meeting Booked. Skipping the first stage doesn't save time — it just moves the wasted effort further down the funnel, where it's more expensive to fix.`,
+ICP Research → Connection → Conversation → Meeting Booked. Skipping the first stage doesn't save time - it just moves the wasted effort further down the funnel, where it's more expensive to fix.`,
     coverImage: '',
     readTimeMinutes: 4,
     relatedService: 'linkedin-automation',
@@ -926,11 +926,11 @@ ICP Research → Connection → Conversation → Meeting Booked. Skipping the fi
     category: 'General',
     excerpt:
       'If your pixel, CAPI, and GTM setup isn’t reconciled against real revenue, you could be cutting a profitable campaign without knowing it.',
-    content: `Every scaling decision is only as good as the data behind it. We've audited ad accounts where a "losing" campaign, according to the ad platform, was actually one of the most profitable campaigns running — once tracking was reconciled against real revenue.
+    content: `Every scaling decision is only as good as the data behind it. We've audited ad accounts where a "losing" campaign, according to the ad platform, was actually one of the most profitable campaigns running - once tracking was reconciled against real revenue.
 
 **Where this goes wrong**
 
-Browser restrictions and iOS privacy changes have made client-side-only tracking unreliable. Without server-side tracking (Conversion API) to recover what the browser drops, ad platforms under-report conversions — sometimes significantly. The result: a campaign that looks like it's underperforming when it's actually under-tracked.
+Browser restrictions and iOS privacy changes have made client-side-only tracking unreliable. Without server-side tracking (Conversion API) to recover what the browser drops, ad platforms under-report conversions - sometimes significantly. The result: a campaign that looks like it's underperforming when it's actually under-tracked.
 
 **The fix isn't complicated, but it is foundational**
 
@@ -938,7 +938,7 @@ Pixel and Conversion API working together, a clean Google Tag Manager setup repl
 
 **Why we audit tracking before recommending any spend change**
 
-Recommending a founder cut a campaign based on under-tracked data would mean cutting something that's actually working. We reconcile platform-reported numbers against real revenue and margin before any scaling conversation happens — because the alternative is making expensive decisions on bad information.`,
+Recommending a founder cut a campaign based on under-tracked data would mean cutting something that's actually working. We reconcile platform-reported numbers against real revenue and margin before any scaling conversation happens - because the alternative is making expensive decisions on bad information.`,
     coverImage: '',
     readTimeMinutes: 4,
     relatedService: '',
@@ -947,7 +947,7 @@ Recommending a founder cut a campaign based on under-tracked data would mean cut
     seo: {
       title: 'Bad Tracking Makes Good Campaigns Look Bad | Nfinity Partner Blog',
       description:
-        'Why pixel, CAPI, and GTM reconciliation against real revenue matters before any scaling decision — and what under-tracking actually costs.',
+        'Why pixel, CAPI, and GTM reconciliation against real revenue matters before any scaling decision - and what under-tracking actually costs.',
     },
   },
 ];

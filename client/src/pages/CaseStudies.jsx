@@ -16,11 +16,11 @@ import { CTASection } from '../components/sections/CTASection.jsx';
 const FAQ_ITEMS = [
   {
     q: 'Are these results typical, or best-case examples?',
-    a: 'They reflect the same framework applied across every account — results vary by starting point, but the system is consistent.',
+    a: 'They reflect the same framework applied across every account - results vary by starting point, but the system is consistent.',
   },
   {
     q: 'Do you have case studies outside of D2C/fashion?',
-    a: 'Yes — education and B2B/considered-purchase examples are included above, and the framework generalizes beyond D2C.',
+    a: 'Yes - education and B2B/considered-purchase examples are included above, and the framework generalizes beyond D2C.',
   },
   {
     q: 'How long until I would see results like these?',
