@@ -112,6 +112,7 @@ function AwardCarousel() {
           <img
             src={AWARD_IMAGES[idx].src}
             alt={AWARD_IMAGES[idx].alt}
+            fetchPriority="high"
             style={{
               position:  'absolute',
               inset:      0,

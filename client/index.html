@@ -46,6 +46,21 @@
     <meta name="google-site-verification" content="2UsUd6cY0DPKF5IWPWIXTrvBx2zTdLGTN_Q_PgcKLr8" />
     <title>Nfinity Partner — Scaling Profitability Is The Game.</title>
 
+    <!--
+      LCP preload — img1.jpeg is the Largest Contentful Paint element on the
+      Home page (hero carousel, above the fold, 558×364 px at desktop).
+      Without this hint the browser doesn't discover the image until React
+      mounts and renders the <img> tag (~3.4 s). The preload moves the fetch
+      to start alongside the JS bundles (~1.1 s), shaving ~2 s from LCP.
+      fetchpriority="high" tells the browser to queue this above other images.
+    -->
+    <link
+      rel="preload"
+      as="image"
+      href="/assets/awards/img1.jpeg"
+      fetchpriority="high"
+    />
+
     <!-- ── DNS + connection warm-up ─────────────────────────────────────── -->
     <!--
       preconnect opens the TLS+TCP handshake to Google Fonts early so the
