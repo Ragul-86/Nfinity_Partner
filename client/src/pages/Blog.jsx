@@ -11,6 +11,7 @@ import { BlogCard } from '../components/sections/BlogCard.jsx';
 import { Badge } from '../components/ui/Badge.jsx';
 import { GlassCard } from '../components/ui/GlassCard.jsx';
 import { Button } from '../components/ui/Button.jsx';
+import { pixelTrack } from '../lib/pixel.js';
 
 const CATEGORIES = [
   'All',
@@ -153,7 +154,7 @@ export default function Blog() {
               <p className="mt-2 text-sm text-slate-400">
                 Book a free profit audit and put them into action - reviewed personally by the founder.
               </p>
-              <Button href="/contact" className="mt-5 w-full" withArrow>
+              <Button href="/contact" className="mt-5 w-full" withArrow onClick={() => pixelTrack('Lead')}>
                 Book Your Free Profit Audit
               </Button>
             </GlassCard>

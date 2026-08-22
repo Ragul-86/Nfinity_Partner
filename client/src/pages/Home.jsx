@@ -21,6 +21,7 @@ import { CTASection } from '../components/sections/CTASection.jsx';
 import { Badge } from '../components/ui/Badge.jsx';
 import { Button } from '../components/ui/Button.jsx';
 import { StickyCTA } from '../components/ui/StickyCTA.jsx';
+import { pixelTrack } from '../lib/pixel.js';
 
 const APPROACH_STEPS = [
   { heading: 'Strategy', body: 'Identify growth opportunities.' },
@@ -245,7 +246,7 @@ export default function Home() {
 
               {/* CTAs */}
               <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Button href="/contact" size="lg" withArrow>
+                <Button href="/contact" size="lg" withArrow onClick={() => pixelTrack('Lead')}>
                   Book Your Free Profit Audit
                 </Button>
                 <Button href="/case-studies" variant="secondary" size="lg">

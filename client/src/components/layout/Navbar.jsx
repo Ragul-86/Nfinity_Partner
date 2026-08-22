@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { PRIMARY_NAV, SERVICES_NAV } from '../../lib/constants.js';
 import { Button } from '../ui/Button.jsx';
+import { pixelTrack } from '../../lib/pixel.js';
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -113,7 +114,7 @@ export function Navbar() {
         </div>
 
         <div className="hidden lg:block">
-          <Button href="/contact" size="md">
+          <Button href="/contact" size="md" onClick={() => pixelTrack('Contact')}>
           Book A Call
           </Button>
         </div>
@@ -163,7 +164,7 @@ export function Navbar() {
               )
             )}
             <div className="mt-3">
-              <Button href="/contact" className="w-full justify-center">
+              <Button href="/contact" className="w-full justify-center" onClick={() => pixelTrack('Contact')}>
                 Book A Call
               </Button>
             </div>

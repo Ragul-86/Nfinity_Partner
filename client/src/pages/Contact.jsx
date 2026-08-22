@@ -5,6 +5,7 @@ import { useSEO } from '../hooks/useSEO.js';
 import { apiClient, ApiClientError } from '../lib/apiClient.js';
 import { CONTACT, REVENUE_RANGE_OPTIONS } from '../lib/constants.js';
 import { JsonLd, organizationSchema, faqSchema } from '../components/shared/JsonLd.jsx';
+import { pixelTrack } from '../lib/pixel.js';
 
 import { GlassCard } from '../components/ui/GlassCard.jsx';
 import { Button } from '../components/ui/Button.jsx';
@@ -84,6 +85,7 @@ export default function Contact() {
         message: form.message.trim(),
         sourcePage: '/contact',
       });
+      pixelTrack('Lead'); // fires only on successful API response, before redirect
       navigate('/thank-you');
     } catch (err) {
       if (err instanceof ApiClientError && Array.isArray(err.details) && err.details.length > 0) {
@@ -214,7 +216,7 @@ export default function Contact() {
           {/* Sidebar */}
           <div className="flex flex-col gap-6">
             <GlassCard className="flex flex-col gap-5 p-7">
-              <a href={CONTACT.whatsappHref} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-white-100 hover:text-cyan-glow-400">
+              <a href={CONTACT.whatsappHref} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-white-100 hover:text-cyan-glow-400" onClick={() => pixelTrack('Contact')}>
                 <MessageCircle size={20} className="text-success-green" /> WhatsApp Us Directly
               </a>
               <a href={CONTACT.phoneHref} className="flex items-center gap-3 text-white-100 hover:text-cyan-glow-400">

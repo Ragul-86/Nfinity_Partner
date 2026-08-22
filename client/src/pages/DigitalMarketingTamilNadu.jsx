@@ -15,6 +15,7 @@ import { FAQSection } from '../components/sections/FAQSection.jsx';
 import { CTASection } from '../components/sections/CTASection.jsx';
 import { GlassCard } from '../components/ui/GlassCard.jsx';
 import { Button } from '../components/ui/Button.jsx';
+import { pixelTrack } from '../lib/pixel.js';
 
 /* ─── Tamil Nadu page – Sticky CTA ─────────────────────────────────────────────
  * Scoped exclusively to this page. Uses a distinct session key so dismissal
@@ -85,6 +86,7 @@ function TamilNaduStickyCTA() {
             background: 'linear-gradient(90deg, #2F6FFF 0%, #3FE0E0 100%)',
             boxShadow:  '0 0 18px rgba(63,224,224,0.20)',
           }}
+          onClick={() => pixelTrack('Lead')}
         >
           Book A Free Strategy Call →
         </Link>

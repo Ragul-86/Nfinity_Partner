@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { X } from 'lucide-react';
+import { pixelTrack } from '../../lib/pixel.js';
 
 /**
  * StickyCTA — scroll-triggered fixed bottom bar.
@@ -89,6 +90,7 @@ export function StickyCTA() {
             background: 'linear-gradient(90deg, #2F6FFF 0%, #3FE0E0 100%)',
             boxShadow:  '0 0 18px rgba(63,224,224,0.20)',
           }}
+          onClick={() => pixelTrack('Lead')}
         >
           Book A Free Strategy Call →
         </Link>

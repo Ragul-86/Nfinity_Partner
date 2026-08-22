@@ -1,5 +1,6 @@
 import { Button } from '../ui/Button.jsx';
 import { Badge } from '../ui/Badge.jsx';
+import { pixelTrack } from '../../lib/pixel.js';
 
 /**
  * Partner trust card — Shopify / Meta / GoKwik, shown below the hero CTA
@@ -104,7 +105,7 @@ export function SectionHero({
           {(primaryCta || secondaryCta) && (
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               {primaryCta && (
-                <Button href={primaryCta.href} size="lg" withArrow>
+                <Button href={primaryCta.href} size="lg" withArrow onClick={() => pixelTrack('Lead')}>
                   {primaryCta.label}
                 </Button>
               )}

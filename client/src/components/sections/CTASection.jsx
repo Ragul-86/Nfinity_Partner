@@ -1,4 +1,5 @@
 import { Button } from '../ui/Button.jsx';
+import { pixelTrack } from '../../lib/pixel.js';
 
 /** { headline, body, cta: { label, href }, variant: 'band'|'inline' } */
 export function CTASection({ headline, body, cta = { label: 'Get A Free Audit', href: '/contact' } }) {
@@ -8,7 +9,7 @@ export function CTASection({ headline, body, cta = { label: 'Get A Free Audit', 
         <h2 className="font-display text-3xl font-extrabold text-navy-950 sm:text-4xl">{headline}</h2>
         {body && <p className="mx-auto mt-4 max-w-xl text-navy-900/80">{body}</p>}
         <div className="mt-8">
-          <Button href={cta.href} variant="secondary" size="lg" withArrow className="!bg-navy-950 !border-navy-950 !text-white-100 hover:!bg-navy-900">
+          <Button href={cta.href} variant="secondary" size="lg" withArrow className="!bg-navy-950 !border-navy-950 !text-white-100 hover:!bg-navy-900" onClick={() => pixelTrack('Lead')}>
             {cta.label}
           </Button>
         </div>

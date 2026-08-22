@@ -12,6 +12,7 @@ import { BlogCard } from '../components/sections/BlogCard.jsx';
 import { TestimonialSlider } from '../components/sections/TestimonialSlider.jsx';
 import { FAQSection } from '../components/sections/FAQSection.jsx';
 import { CTASection } from '../components/sections/CTASection.jsx';
+import { ClientProofSection } from '../components/sections/ClientProofSection.jsx';
 
 const FAQ_ITEMS = [
   {
@@ -78,6 +79,9 @@ export default function CaseStudies() {
           )}
         </div>
       </section>
+
+      {/* Before → After Client Proof */}
+      <ClientProofSection />
 
       {/* Latest Insights (Blog) */}
       <section id="latest-insights" className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-24">

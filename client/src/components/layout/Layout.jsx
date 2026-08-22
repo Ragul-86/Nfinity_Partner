@@ -1,9 +1,10 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import { useEffect, Suspense } from 'react';
+import { useEffect, useRef, Suspense } from 'react';
 import { Navbar } from './Navbar.jsx';
 import { Footer } from './Footer.jsx';
 import { WhatsAppButton } from './WhatsAppButton.jsx';
 import { InstagramButton } from './InstagramButton.jsx';
+import { pixelPageView } from '../../lib/pixel.js';
 
 /**
  * Minimal fallback shown while a lazy page chunk is downloading.
@@ -23,6 +24,19 @@ function PageShell() {
 
 export function Layout() {
   const location = useLocation();
+
+  // SPA PageView: fire on every pathname change EXCEPT the very first render.
+  // The initial PageView is already fired by the base code in index.html.
+  // Using a ref (not state) avoids a re-render and works correctly in production
+  // React 18 (StrictMode double-invokes effects in dev only).
+  const isMountRef = useRef(true);
+  useEffect(() => {
+    if (isMountRef.current) {
+      isMountRef.current = false;
+      return;
+    }
+    pixelPageView();
+  }, [location.pathname]); // hash changes are not new pages — intentionally excluded
 
   useEffect(() => {
     if (location.hash) {
